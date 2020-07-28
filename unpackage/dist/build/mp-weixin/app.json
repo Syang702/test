@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/classify/classify",
+    "pages/car/car",
+    "pages/my/my",
+    "pages/detail/detail",
+    "pages/login/login",
+    "pages/order/order",
+    "pages/orderList/orderList",
+    "pages/allOrder/allOrder",
+    "pages/orderDetail/orderDetail",
+    "pages/address/address",
+    "pages/addressEdit/addressEdit",
+    "pages/user/user",
+    "pages/about/about",
+    "pages/opinion/opinion"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "买菜yang",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/tabbar/h1.png",
+        "selectedIconPath": "static/tabbar/h2.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "iconPath": "static/tabbar/c1.png",
+        "selectedIconPath": "static/tabbar/c2.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/car/car",
+        "iconPath": "static/tabbar/g1.png",
+        "selectedIconPath": "static/tabbar/g2.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "static/tabbar/i1.png",
+        "selectedIconPath": "static/tabbar/i2.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}
