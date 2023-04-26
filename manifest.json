@@ -1,26 +1,31 @@
 {
-    "name" : "买菜yang",
-    "appid" : "__UNI__361C680",
-    "description" : "",
+    "name" : "@wingscloud/template-shop",
+    "appid" : "__UNI__A0A1A31",
+    "description" : "基于 Uniapp + uView UI 的社区电商微信小程序 / App 开发模板。提供商城、社区、积分等 42 张页面模板。",
+    "fullscreen" : true,
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
-    /* 5+App特有相关 */
     "app-plus" : {
-        "usingComponents" : true,
-        "nvueCompiler" : "uni-app",
-        "compilerVersion" : 3,
+        "optimization" : {
+            "subPackages" : true
+        },
+        "safearea" : {
+            "bottom" : {
+                "offset" : "none"
+            }
+        },
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : true,
             "autoclose" : true,
             "delay" : 0
         },
-        /* 模块配置 */
+        "usingComponents" : true,
+        "nvueCompiler" : "uni-app",
+        "compilerVersion" : 3,
         "modules" : {},
-        /* 应用发布信息 */
         "distribute" : {
-            /* android打包配置 */
             "android" : {
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
@@ -45,11 +50,10 @@
                     "<uses-feature android:name=\"android.hardware.camera\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
-                ]
+                ],
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ]
             },
-            /* ios打包配置 */
             "ios" : {},
-            /* SDK配置 */
             "sdkConfigs" : {
                 "ad" : {}
             },
@@ -87,27 +91,55 @@
             }
         }
     },
-    /* 快应用特有相关 */
     "quickapp" : {},
-    /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx861fe8b4c86ee6ad",
+        "appid" : "wxd15f2a2c71b4281e",
         "setting" : {
             "urlCheck" : false,
-            "minified" : true
+            "es6" : false,
+            "minified" : true,
+            "postcss" : false
         },
-        "usingComponents" : true
+        "optimization" : {
+            "subPackages" : false
+        },
+        "usingComponents" : true,
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "获取当前城市，用于个性化推荐"
+            }
+        }
     },
     "mp-alipay" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "component2" : true
+    },
+    "mp-qq" : {
+        "optimization" : {
+            "subPackages" : true
+        },
+        "appid" : "15646153"
     },
     "mp-baidu" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "appid" : ""
     },
     "mp-toutiao" : {
-        "usingComponents" : true
+        "usingComponents" : true,
+        "appid" : ""
     },
-    "uniStatistics" : {
-        "enable" : false
-    }
+    "h5" : {
+        "template" : "template.h5.html",
+        "router" : {
+            "mode" : "hash",
+            "base" : ""
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : false
+            }
+        },
+        "title" : "uView UI"
+    },
+    "vueVersion" : "2"
 }

@@ -1,164 +1,230 @@
+/* 登录 */
 <template>
-	<!-- 注册登录 -->
-	<view class="login">
-		<input class="login-phone" v-model="phone" type="text" placeholder="输入手机号(新手机号自动注册)" />
-		<view class="login-pass">
-			<input class="login-phone" v-model="code" type="text" placeholder="输入手机验证码" />
-			<text class="login-pass-text" :style="phoneOff ? 'background: #007AFF;' : ''" @click="sendCode">{{ codeInp >= 60 ? '获取验证码' : '剩余' + codeInp + '秒' }}</text>
-		</view>
-		<!-- 登陆 -->
-		<view class="login-btns" :style="codeOff ? 'background: #007AFF;' : ''" @click="loginBtns">登陆</view>
-	</view>
+    <view class="login">
+        <view class="login-logo">
+            <image src="http://192.168.10.115:7001/h5/static/images/login/logo.png" />
+        </view>
+        <view class="form">
+            <u-form :model="form">
+                <u-form-item>
+                    <u-input v-model="form.loginName" placeholder="账号" />
+                </u-form-item>
+                <u-form-item>
+                    <u-input v-model="form.password" placeholder="密码" type="password" />
+                </u-form-item>
+                <u-form-item v-if="show">
+                    <u-input v-model="form.enterRandomPwd" placeholder="短信验证码" />
+                    <view slot="right" class="get-msg" @tap="getCode()"> 获取验证码 </view>
+                </u-form-item>
+                <view class="btn-group">
+                    <u-checkbox v-model="isSave" shape="circle">记住账号</u-checkbox>
+                    <view class="register" @click="toResetPassword">忘记密码</view>
+                </view>
+                <u-button type="primary" shape="circle" @click="login()">登录</u-button>
+            </u-form>
+        </view>
+        <u-toast ref="uToast" />
+        <view class="login-footer">
+            <view>中国移动通信集团河南有限公司</view>
+            <view>京ICP备14019613号-2</view>
+            <view>热线:0371-60880301 转920或964</view>
+            <view>Email:liyi01@sinoprof.com</view>
+        </view>
+        <VerifySlide @result="verifyResult" ref="verifyElement" />
+    </view>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			phone: undefined,
-			code: undefined,
-			phoneOff: false, //手机号是否验证通过
-			codeNums: null, //验证码
-			codeInp: 60, //倒计时
-			codeTime: null, //定时器
-			codeStart: false,
-			codeOff: false // 验证码是否验证通过
-		};
-	},
-	methods: {
-		sendCode() {
-			//点击获取验证码
-			if (this.phoneOff) {
-				let This = this;
-				let codeNums = parseInt(Math.random() * 10000);
-				This.codeStart = false;
-				uni.showModal({
-					title: '提示',
-					content: '你的验证码是' + codeNums,
-					success: function(res) {
-						if (res.confirm) {
-							This.codeNums = codeNums;
-							This.codeStart = true;
-							This.codeInpSet();
-						} else if (res.cancel) {
-						}
-					}
-				});
-			} else {
-				uni.showToast({
-					title: '请输入正确的手机号',
-					icon: 'none',
-					duration: 2000
-				});
-			}
-		},
-		codeInpSet() {
-			// 倒计时定时器
-			let This = this;
-			clearInterval(This.codeTime);
-			This.codeInp = 60;
-			This.codeTime = setInterval(function() {
-				if (This.codeInp >= 1) {
-					This.codeInp--;
-				} else {
-					This.codeInp = 60;
-					This.codeNums = null;
-					This.codeStart = false;
-					clearInterval(This.codeTime);
-				}
-			}, 1000);
-		},
-		loginBtns() {
-			//登陆按钮
-			let This = this;
-			if (this.codeOff) {
-				this.request('nottoken/login', 'post', {
-					phone: this.phone
-				}).then(res => {
-					if (res.data.code === 0) {
-						uni.setStorageSync('token', res.data.data.token);
-						uni.switchTab({
-							url: '/pages/my/my'
-						});
-					}
-				});
-			} else {
-				uni.showToast({
-					title: '请输入正确的验证码',
-					icon: 'none',
-					duration: 2000
-				});
-			}
-		}
-	},
-	watch: {
-		phone(news, olds) {
-			//监听手机号是否正确
-			let rg = /^(?:(?:\+|00)86)?1(?:(?:3[\d])|(?:4[5-7|9])|(?:5[0-3|5-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[1|8|9]))\d{8}$/;
-			this.phoneOff = rg.test(news);
-		},
-		code(news, olds) {
-			//监听 验证码是否验证通过
-			if (news == this.codeNums && news != null) {
-				this.codeOff = true;
-			} else {
-				this.codeOff = false;
-			}
-		}
-	}
-};
+    import { login, getUserTokenData, getCode } from "../../config/api.js";
+    import md5 from "../../static/js/md5.min.js"; //  MD5
+    import VerifySlide from "../components/verify-slide.vue"; // 滑块验证
+    export default {
+        data() {
+            return {
+                show: true,
+                form: {},
+                isSave: true,
+            };
+        },
+        components: {
+            VerifySlide,
+        },
+        methods: {
+            toResetPassword() {
+                //忘记密码
+                uni.navigateTo({
+                    url: "/pages/login/reset-password",
+                });
+            },
+            getCode() {
+                if (this.form.loginName == "" || this.form.loginName == undefined) {
+                    this.$refs.uToast.show({
+                        title: "请先输入用户名",
+                        type: "error",
+                    });
+                    return;
+                }
+                this.$refs.verifyElement.show();
+                return;
+            },
+            verifyResult(res) {
+                if (res) {
+                    var ran = Math.random() * 100000000000000000;
+                    var param = {};
+                    param.loginName = this.form.loginName;
+                    param.ran = ran;
+                    param.cspanStr = md5("RSA_0123" + ran);
+                    param.loginType = "h5";
+                    param.forward = "GET_RANDOM_PASSWORD_H5";
+                    // this.$refs.uToast.show({
+                    //     title: '请求失败,请稍后再试',
+                    //     type: 'error'
+                    // })
+                    // return
+                    getCode(param).then((res) => {
+                        console.log("获取验证码返回值" + res);
+                        var resTxt = res.split("====");
+                        if (!resTxt[0]) {
+                            this.$refs.uToast.show({
+                                title: "生成动态密码时系统出错!",
+                                type: "error",
+                            });
+                            return;
+                        } else {
+                            if (resTxt[0] == "Y") {
+                                if (resTxt[1] == "WARN_MSG") {
+                                    this.show = false;
+                                    this.$refs.uToast.show({
+                                        title: "请登录!",
+                                        type: "success",
+                                    });
+                                    return;
+                                } else {
+                                    this.$refs.uToast.show({
+                                        title: "验证码已发送!",
+                                        type: "success",
+                                    });
+                                    return;
+                                }
+                            } else {
+                                this.$refs.uToast.show({
+                                    title: "请求失败,请稍后再试",
+                                    type: "error",
+                                });
+                                return;
+                            }
+                        }
+                    });
+                }
+            },
+            login() {
+                if (this.form.loginName == "" || this.form.loginName == undefined) {
+                    this.$refs.uToast.show({
+                        title: "请输入用户名",
+                        type: "error",
+                    });
+                    return;
+                } else if (this.form.password == "" || this.form.password == undefined) {
+                    this.$refs.uToast.show({
+                        title: "请输入密码",
+                        type: "error",
+                    });
+                    return;
+                }
+                if (this.show == true) {
+                    if (this.form.enterRandomPwd == "" || this.form.enterRandomPwd == undefined) {
+                        this.$refs.uToast.show({
+                            title: "请输入短信验证码",
+                            type: "error",
+                        });
+                        return;
+                    }
+                }
+                var data = {};
+                var ran = Math.random() * 100000000000000000;
+                var cspanStr = md5("RSA_0123" + ran);
+                data.act = "login";
+                data.parm =
+                    "{'loginName':'" +
+                    this.form.loginName +
+                    "','password':'" +
+                    md5(this.form.password) +
+                    "','source':'app','dzLoginSystme':'wx','cspanStr':'" +
+                    cspanStr +
+                    "','random':'" +
+                    ran +
+                    "'}";
+                console.log(data);
+                login(data).then((res) => {
+                    uni.removeStorageSync("sessionId");
+                    console.log(res);
+                    if (res.msg == "1") {
+                        uni.setStorageSync("sessionId", res.data.sessionId);
+                        getUserTokenData();
+                        this.$refs.uToast.show({
+                            title: "登录成功,前往首页",
+                            type: "success",
+                            callback: function () {
+                                uni.switchTab({
+                                    url: "/pages/home/home",
+                                    // url: '/pages/goods/goods-detail?vendorId=116555&vendorType=1&createType=1&headerId=12098&lineId=7820&itemId=1000174761&orderType=1&price=2500&oldPrice=2500'
+                                });
+                            },
+                        });
+                    } else {
+                        this.$refs.uToast.show({
+                            title: res.msg,
+                            type: "error",
+                        });
+                        return;
+                    }
+                });
+            },
+            toRegister() {
+                uni.navigateTo({
+                    url: "/pages/account/register",
+                });
+            },
+        },
+    };
 </script>
 
 <style lang="scss" scoped>
-.login {
-	width: 100%;
-	height: 100%;
-	background: #ffffff;
-	.login-phone {
-		width: 100%;
-		height: 100rpx;
-		border-bottom: 1rpx solid #cccccc;
-		padding-left: 25rpx;
-		padding-right: 25px;
-		box-sizing: border-box;
-		font-size: 30rpx;
-		margin-bottom: 20rpx;
-	}
-	.login-pass {
-		width: 100%;
-		height: 100rpx;
-		position: relative;
-		margin-bottom: 50rpx;
-		.login-pass-text {
-			display: inline-block;
-			background: #cccccc;
-			width: 200rpx;
-			height: 80rpx;
-			text-align: center;
-			line-height: 80rpx;
-			color: #ffffff;
-			border-radius: 40rpx;
-			position: absolute;
-			right: 25rpx;
-			top: 10rpx;
-		}
-	}
-	.login-btns {
-		width: 700rpx;
-		height: 100rpx;
-		margin-left: 25rpx;
-		background: #cccccc;
-		text-align: center;
-		line-height: 100rpx;
-		color: #ffffff;
-		border-radius: 50rpx;
-		font-size: 36rpx;
-	}
-}
-.login-phone:placeholder-shown {
-	color: #cccccc;
-}
-.login-phone:-ms-input-placeholder {
-	color: #cccccc;
-}
+    .login {
+        height: 100vh;
+        background-color: #fff;
+
+        .login-logo {
+            padding: 120rpx 0 80rpx;
+            @include flex-center;
+
+            image {
+                width: 310rpx;
+                height: 146rpx;
+            }
+        }
+
+        .form {
+            width: 100%;
+            padding: 50rpx;
+
+            .get-msg {
+                color: #33acfb;
+            }
+
+            .btn-group {
+                height: 110rpx;
+                @include flex-center(space-between, center);
+            }
+        }
+
+        .login-footer {
+            width: 100%;
+            position: absolute;
+            bottom: 100rpx;
+            font-size: 24rpx;
+            text-align: center;
+            color: #808080;
+        }
+    }
 </style>

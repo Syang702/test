@@ -1,246 +1,141 @@
 <template>
-	<view v-if="show" class="u-tabbar" @touchmove.stop.prevent>
-		<view class="u-tabbar__content safe-area-inset-bottom" :style="{
-			height: $u.addUnit(height),
-			backgroundColor: bgColor,
-		}" :class="{
-			'u-border-top': borderTop
-		}">
-			<view class="u-tabbar__content__item" v-for="(item, index) in list" :key="index" :class="{
-				'u-tabbar__content__circle': midButton &&item.midButton
-			}" @tap.stop="clickHandler(index)" :style="{
-				backgroundColor: bgColor
-			}">
-				<view :class="[
-					midButton && item.midButton ? 'u-tabbar__content__circle__button' : 'u-tabbar__content__item__button'
-				]">
-					<u-icon 
-						:size="midButton && item.midButton ? midButtonSize : iconSize" 
-						:name="index == value ? item.selectedIconPath : item.iconPath"
-						:color="index == value ? activeColor : inactiveColor"
-						:custom-prefix="item.customIcon ? 'custom-icon' : 'uicon'"
-					></u-icon>
-					<u-badge :count="item.count" :is-dot="item.isDot" 
-						v-if="item.count > 0"
-						:offset="[-2, getOffsetRight(item.count, item.isDot)]"
-					></u-badge>
-				</view>
-				<view class="u-tabbar__content__item__text" :style="{
-					color: index == value ? activeColor : inactiveColor
-				}">
-					<text class="u-line-1">{{item.text}}</text>
-				</view>
+	<view class="u-tabbar">
+		<view
+		    class="u-tabbar__content"
+		    ref="u-tabbar__content"
+		    @touchmove.stop.prevent="noop"
+		    :class="[border && 'u-border-top', fixed && 'u-tabbar--fixed']"
+		    :style="[tabbarStyle]"
+		>
+			<view class="u-tabbar__content__item-wrapper">
+				<slot />
 			</view>
-			<view v-if="midButton" class="u-tabbar__content__circle__border" :class="{
-				'u-border': borderTop,
-			}" :style="{
-				backgroundColor: bgColor
-			}">
-			</view>
+			<u-safe-bottom v-if="safeAreaInsetBottom"></u-safe-bottom>
 		</view>
-		<!-- 这里加上一个48rpx的高度,是为了增高有凸起按钮时的防塌陷高度(也即按钮凸出来部分的高度) -->
-		<view class="u-fixed-placeholder safe-area-inset-bottom" :style="{ 
-				height: `calc(${$u.addUnit(height)} + ${midButton ? 48 : 0}rpx)`,
-			}"></view>
+		<view
+		    class="u-tabbar__placeholder"
+			v-if="placeholder"
+		    :style="{
+				height: placeholderHeight + 'px',
+			}"
+		></view>
 	</view>
 </template>
 
 <script>
+	import props from './props.js';
+	// #ifdef APP-NVUE
+	const dom = uni.requireNativePlugin('dom')
+	// #endif
+	/**
+	 * Tabbar 底部导航栏
+	 * @description 此组件提供了自定义tabbar的能力。
+	 * @tutorial https://www.uviewui.com/components/tabbar.html
+	 * @property {String | Number}	value				当前匹配项的name
+	 * @property {Boolean}			safeAreaInsetBottom	是否为iPhoneX留出底部安全距离（默认 true ）
+	 * @property {Boolean}			border				是否显示上方边框（默认 true ）
+	 * @property {String | Number}	zIndex				元素层级z-index（默认 1 ）
+	 * @property {String}			activeColor			选中标签的颜色（默认 '#1989fa' ）
+	 * @property {String}			inactiveColor		未选中标签的颜色（默认 '#7d7e80' ）
+	 * @property {Boolean}			fixed				是否固定在底部（默认 true ）
+	 * @property {Boolean}			placeholder			fixed定位固定在底部时，是否生成一个等高元素防止塌陷（默认 true ）
+	 * @property {Object}			customStyle			定义需要用到的外部样式
+	 * 
+	 * @example <u-tabbar :value="value2" :placeholder="false" @change="name => value2 = name" :fixed="false" :safeAreaInsetBottom="false"><u-tabbar-item text="首页" icon="home" dot ></u-tabbar-item></u-tabbar>
+	 */
 	export default {
-		props: {
-			// 显示与否
-			show: {
-				type: Boolean,
-				default: true
-			},
-			// 通过v-model绑定current值
-			value: {
-				type: [String, Number],
-				default: 0
-			},
-			// 整个tabbar的背景颜色
-			bgColor: {
-				type: String,
-				default: '#ffffff'
-			},
-			// tabbar的高度，默认50px，单位任意，如果为数值，则为rpx单位
-			height: {
-				type: [String, Number],
-				default: '50px'
-			},
-			// 非凸起图标的大小，单位任意，数值默认rpx
-			iconSize: {
-				type: [String, Number],
-				default: 40
-			},
-			// 凸起的图标的大小，单位任意，数值默认rpx
-			midButtonSize: {
-				type: [String, Number],
-				default: 90
-			},
-			// 激活时的演示，包括字体图标，提示文字等的演示
-			activeColor: {
-				type: String,
-				default: '#303133'
-			},
-			// 未激活时的颜色
-			inactiveColor: {
-				type: String,
-				default: '#606266'
-			},
-			// 是否显示中部的凸起按钮
-			midButton: {
-				type: Boolean,
-				default: false
-			},
-			// 配置参数
-			list: {
-				type: Array,
-				default () {
-					return []
-				}
-			},
-			// 切换前的回调
-			beforeSwitch: {
-				type: Function,
-				default: null
-			},
-			// 是否显示顶部的横线
-			borderTop: {
-				type: Boolean,
-				default: true
-			},
-		},
+		name: 'u-tabbar',
+		mixins: [uni.$u.mpMixin, uni.$u.mixin,props],
 		data() {
 			return {
-
+				placeholderHeight: 0
 			}
 		},
+		computed: {
+			tabbarStyle() {
+				const style = {
+					zIndex: this.zIndex
+				}
+				// 合并来自父组件的customStyle样式
+				return uni.$u.deepMerge(style, uni.$u.addStyle(this.customStyle))
+			},
+			// 监听多个参数的变化，通过在computed执行对应的操作
+			updateChild() {
+				return [this.value, this.activeColor, this.inactiveColor]
+			},
+			updatePlaceholder() {
+				return [this.fixed, this.placeholder]
+			}
+		},
+		watch: {
+			updateChild() {
+				// 如果updateChildren中的元素发生了变化，则执行子元素初始化操作
+				this.updateChildren()
+			},
+			updatePlaceholder() {
+				// 如果fixed，placeholder等参数发生变化，重新计算占位元素的高度
+				this.setPlaceholderHeight()
+			}
+		},
+		created() {
+			this.children = []
+		},
+		mounted() {
+			this.setPlaceholderHeight()
+		},
 		methods: {
-			async clickHandler(index) {
-				if(this.beforeSwitch && typeof(this.beforeSwitch) === 'function') {
-					// 执行回调，同时传入索引当作参数
-					let beforeSwitch = this.beforeSwitch(index);
-					// 判断是否返回了promise
-					if (!!beforeSwitch && typeof beforeSwitch.then === 'function') {
-						await beforeSwitch.then(res => {
-							// promise返回成功，
-							this.switchTab(index);
-						}).catch(err => {
-							
-						})
-					} else if(beforeSwitch === true) {
-						// 如果返回true
-						this.switchTab(index);
-					}
-				} else {
-					this.switchTab(index);
-				}
+			updateChildren() {
+				// 如果存在子元素，则执行子元素的updateFromParent进行更新数据
+				this.children.length && this.children.map(child => child.updateFromParent())
 			},
-			// 切换tab
-			switchTab(index) {
-				// 发出事件和修改v-model绑定的值
-				this.$emit('change', index);
-				this.$emit('input', index);
-			},
-			// 计算角标的right值
-			getOffsetRight(count, isDot) {
-				// 点类型，count大于9(两位数)，分别设置不同的right值，避免位置太挤
-				if(isDot) {
-					return -20;
-				} else if(count > 9) {
-					return -40;
-				} else {
-					return -30;
-				}
+			// 设置用于防止塌陷元素的高度
+			async setPlaceholderHeight() {
+				if (!this.fixed || !this.placeholder) return
+				// 延时一定时间
+				await uni.$u.sleep(20)
+				// #ifndef APP-NVUE
+				this.$uGetRect('.u-tabbar__content').then(({height = 50}) => {
+					// 修复IOS safearea bottom 未填充高度
+					this.placeholderHeight = height
+				})
+				// #endif
+
+				// #ifdef APP-NVUE
+				dom.getComponentRect(this.$refs['u-tabbar__content'], (res) => {
+					const {
+						size
+					} = res
+					this.placeholderHeight = size.height
+				})
+				// #endif
 			}
 		}
 	}
 </script>
 
-<style scoped lang="scss">
-	.u-fixed-placeholder {
-		box-sizing: content-box;
-	}
+<style lang="scss" scoped>
+	@import "../../libs/css/components.scss";
 
 	.u-tabbar {
-
+		@include flex(column);
+		flex: 1;
+		justify-content: center;
+		
 		&__content {
-			display: flex;
-			align-items: center;
-			position: relative;
+			@include flex(column);
+			background-color: #fff;
+			
+			&__item-wrapper {
+				height: 50px;
+				@include flex(row);
+			}
+		}
+
+		&--fixed {
 			position: fixed;
 			bottom: 0;
 			left: 0;
-			width: 100%;
-			z-index: 998;
-			box-sizing: content-box;
-
-			&__circle__border {
-				border-radius: 100%;
-				width: 110rpx;
-				height: 110rpx;
-				top: -48rpx;
-				left: 50%;
-				transform: translateX(-50%);
-				position: absolute;
-				z-index: 4;
-				background-color: #ffffff;
-
-				&:after {
-					border-radius: 100px;
-				}
-			}
-
-			&__item {
-				flex: 1;
-				justify-content: center;
-				height: 100%;
-				padding: 12rpx 0;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				position: relative;
-
-				&__button {
-					position: absolute;
-					top: 10rpx;
-				}
-
-				&__text {
-					color: $u-content-color;
-					font-size: 26rpx;
-					line-height: 28rpx;
-					position: absolute;
-					bottom: 12rpx;
-					left: 50%;
-					transform: translateX(-50%);
-				}
-			}
-
-			&__circle {
-				position: relative;
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				z-index: 10;
-				height: calc(100% - 1px);
-
-				&__button {
-					width: 90rpx;
-					height: 90rpx;
-					border-radius: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					position: absolute;
-					background-color: #ffffff;
-					top: -40rpx;
-					left: 50%;
-					z-index: 6;
-					transform: translateX(-50%);
-				}
-			}
+			right: 0;
 		}
 	}
 </style>

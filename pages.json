@@ -1,142 +1,255 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/home/home",
-			"style": {
-				// "navigationBarTitleText": "uni-app"   原生导航栏标题
-				"navigationStyle": "custom", //去掉页面原生导航栏
-				"onReachBottomDistance": 50 //滚动页面到距离底部50px时，就会触发onReachBottom事件 一般用于下拉下一页数据
-			}
-		},
-		{
-			"path": "pages/classify/classify",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/car/car",
-			"style": {
-				"navigationBarTitleText": "购物车"
-			}
-		},
-		{
-			"path": "pages/my/my",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
-		{
-			"path": "pages/detail/detail",
-			"style": {
-				"navigationBarTitleText": "商品详情"   
-			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登陆注册"   
-			}
-		},
-		{
-			"path": "pages/order/order",
-			"style": {
-				"navigationBarTitleText": "提交订单"   
-			}
-		},
-		{
-			"path": "pages/orderList/orderList",
-			"style": {
-				"navigationBarTitleText": "商品清单"   
-			}
-		},
-		{
-			"path": "pages/allOrder/allOrder",
-			"style": {
-				"navigationBarTitleText": "订单"
-			}
-		},
-		{
-			"path": "pages/orderDetail/orderDetail",
-			"style": {
-				"navigationBarTitleText": "订单详情"   
-			}
-		},
-		{
-			"path": "pages/address/address",
-			"style": {
-				"navigationBarTitleText": "收获地址"   
-			}
-		},
-		{
-			"path": "pages/addressEdit/addressEdit",
-			"style": {
-				"navigationBarTitleText": "添加编辑地址"   
-			}
-		},
-		{
-			"path": "pages/user/user",
-			"style": {
-				"navigationBarTitleText": "用户中心"   
-			}
-		},
-		{
-			"path": "pages/about/about",
-			"style": {
-				"navigationBarTitleText": "关于"   
-			}
-		},
-		{
-			"path": "pages/opinion/opinion",
-			"style": {
-				"navigationBarTitleText": "意见反馈"   
-			}
-		}
-	],
-	"easycom": { //配置 uView
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
-	},
-	"globalStyle": { //用于设置应用的状态栏、导航条、标题、窗口背景色等
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "买菜yang",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	},
-	"tabBar": { //底部tab栏
-		"color": "#7A7E83",
-		"selectedColor": "#3cc51f",
-		"borderStyle": "black",
-		"backgroundColor": "#ffffff",
-		"list": [{
-				"pagePath": "pages/home/home",
-				"iconPath": "static/tabbar/h1.png",
-				"selectedIconPath": "static/tabbar/h2.png",
-				"text": "首页"
-			}, {
-				"pagePath": "pages/classify/classify",
-				"iconPath": "static/tabbar/c1.png",
-				"selectedIconPath": "static/tabbar/c2.png",
-				"text": "分类"
-			},
-			{
-				"pagePath": "pages/car/car",
-				"iconPath": "static/tabbar/g1.png",
-				"selectedIconPath": "static/tabbar/g2.png",
-				"text": "购物车"
-			}, {
-				"pagePath": "pages/my/my",
-				"iconPath": "static/tabbar/i1.png",
-				"selectedIconPath": "static/tabbar/i2.png",
-				"text": "我的"
-			}
-		]
-	},
-	"condition": { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [{
-			"name": "", //模式名称
-			"path": "", //启动页面，必选
-			"query": "" //启动参数，在页面的onLoad函数里面得到
-		}]
-	}
+    "easycom": {
+        "^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+    },
+    "pages": [
+        {
+            "path": "pages/home/home",
+            "style": {
+                "navigationBarTitleText": "河南移动B2B订购平台"
+            }
+        },
+        {
+            "path": "pages/classify/classify",
+            "style": {
+                "navigationBarTitleText": "分类"
+            }
+        },
+        {
+            "path": "pages/car/car",
+            "style": {
+                "navigationBarTitleText": "购物车"
+            }
+        },
+        {
+            "path": "pages/my/my",
+            "style": {
+                "navigationBarTitleText": "我的",
+                "navigationBarBackgroundColor": "#f1e7e7"
+            }
+        },
+        {
+            "path": "pages/my/info",
+            "style": {
+                "navigationBarTitleText": "用户信息"
+            }
+        },
+        {
+            "path": "pages/my/order",
+            "style": {
+                "navigationBarTitleText": "我的订单"
+            }
+        },
+        {
+            "path": "pages/my/coupon",
+            "style": {
+                "navigationBarTitleText": "我的优惠券"
+            }
+        },
+        {
+            "path": "pages/my/rebate",
+            "style": {
+                "navigationBarTitleText": "我的返利"
+            }
+        },
+        {
+            "path": "pages/my/report",
+            "style": {
+                "navigationBarTitleText": "进销存报表"
+            }
+        },
+        {
+            "path": "pages/my/notice",
+            "style": {
+                "navigationBarTitleText": "公告"
+            }
+        },
+        {
+            "path": "pages/my/notice-detail",
+            "style": {
+                "navigationBarTitleText": "公告详情"
+            }
+        },
+        {
+            "path": "pages/my/address",
+            "style": {
+                "navigationBarTitleText": "地址管理"
+            }
+        },
+        {
+            "path": "pages/my/service",
+            "style": {
+                "navigationBarTitleText": "联系客服"
+            }
+        },
+        {
+            "path": "pages/my/address-edit",
+            "style": {
+                "navigationBarTitleText": "编辑收货地址"
+            }
+        },
+        {
+            "path": "pages/my/choose-date",
+            "style": {
+                "navigationBarTitleText": "选择时间"
+            }
+        },
+        {
+            "path": "pages/login/login",
+            "style": {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/login/reset-password",
+            "style": {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-common",
+            "style": {
+                "navigationBarTitleText": "手机列表"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-ECO",
+            "style": {
+                "navigationBarTitleText": "生态合作"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-HDZQ",
+            "style": {
+                "navigationBarTitleText": "活动专区"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-ZC",
+            "style": {
+                "navigationBarTitleText": "众筹"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-XYG",
+            "style": {
+                "navigationBarTitleText": "信用购"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list-search",
+            "style": {
+                "navigationBarTitleText": "搜索"
+            }
+        },
+        {
+            "path": "pages/goods/goods-list",
+            "style": {
+                "navigationBarTitleText": "分类商品"
+            }
+        },
+        {
+            "path": "pages/goods/goods-detail",
+            "style": {
+                "navigationStyle": "custom"
+            }
+        },
+        {
+            "path": "pages/goods/order-create",
+            "style": {
+                "navigationBarTitleText": "订单确认"
+            }
+        },
+        {
+            "path": "pages/goods/select-address",
+            "style": {
+                "navigationBarTitleText": "选择地址"
+            }
+        },
+        {
+            "path": "pages/goods/order-pay",
+            "style": {
+                "navigationBarTitleText": "支付结算"
+            }
+        },
+        {
+            "path": "pages/goods/pay-result",
+            "style": {
+                "navigationBarTitleText": "支付结果"
+            }
+        },
+        {
+            "path": "pages/my/order-detail",
+            "style": {
+                "navigationBarTitleText": "订单详情"
+            }
+        },
+        {
+            "path": "pages/my/order-logistics",
+            "style": {
+                "navigationBarTitleText": "物流信息"
+            }
+        },
+        {
+            "path": "pages/my/order-reimburse",
+            "style": {
+                "navigationBarTitleText": "申请退款"
+            }
+        },
+        {
+            "path": "pages/my/after-sale",
+            "style": {
+                "navigationBarTitleText": "退款/售后"
+            }
+        }
+    ],
+    "subPackages": [
+        {
+            "root": "pagesA",
+            "pages": []
+        }
+    ],
+    // 分包预载配置
+    "preloadRule": {},
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "河南移动手机平台",
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "backgroundColor": "#F8F8F8",
+        "navigationStyle": "custom" // 全局自定义导航栏
+    },
+    "tabBar": {
+        "color": "#aaafb8",
+        "selectedColor": "#33acfb",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "/static/tabbar/home_1.png",
+                "selectedIconPath": "/static/tabbar/home_2.png"
+            },
+            {
+                "pagePath": "pages/classify/classify",
+                "text": "分类",
+                "iconPath": "/static/tabbar/classify_1.png",
+                "selectedIconPath": "/static/tabbar/classify_2.png"
+            },
+            {
+                "pagePath": "pages/car/car",
+                "text": "购物车",
+                "iconPath": "/static/tabbar/car_1.png",
+                "selectedIconPath": "/static/tabbar/car_2.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "/static/tabbar/my_1.png",
+                "selectedIconPath": "/static/tabbar/my_2.png"
+            }
+        ]
+    },
+    // 启动模式配置
+    "condition": {}
 }
