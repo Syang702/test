@@ -64,7 +64,7 @@
 				</view>
 			</view>
 			<view class="other-box">
-				<u-cell-group>
+<!-- 				<u-cell-group>
 					<u-cell-item title="商品总额" :value="orderInfo.neetPayAmount" :arrow="false"></u-cell-item>
 					<u-cell-item title="运费" :value="orderInfo.deliverAmount" :arrow="false"></u-cell-item>
 					<u-cell-item title="订单总价" :value="orderInfo.neetPayAmount" :arrow="false"></u-cell-item>
@@ -74,7 +74,7 @@
 						</u-tag>
 					</u-cell-item>
 					<u-cell-item title="下单时间" :value="orderInfo.creationDate" :arrow="false"></u-cell-item>
-				</u-cell-group>
+				</u-cell-group> -->
 			</view>
 			<u-gap height="120"></u-gap>
 		</scroll-view>

@@ -5,7 +5,7 @@
 			<view class="img">
 				<image class="order-pay-title-img" src="../../static/images/index/title.png" />
 			</view>
-			<view class="pay-content">
+<!-- 			<view class="pay-content">
 				<scroll-view scroll-y style="height: 100%">
 					<u-cell-group>
 						<u-cell-item title="支付订单号" :value="gatherOrder" :arrow="false"></u-cell-item>
@@ -30,7 +30,7 @@
 						<u-cell-item title="实付金额" :value="'￥' + needPayAmound" :arrow="false"></u-cell-item>
 					</u-cell-group>
 				</scroll-view>
-			</view>
+			</view> -->
 		</view>
 		<view class="btn">
 			<u-button :class="[payBtnDis ? 'disabled' : '']" @click="toPay()" type="primary" shape="circle">确认支付

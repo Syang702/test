@@ -36,7 +36,7 @@
 
 <script>
     import { login, getUserTokenData, getCode } from "../../config/api.js";
-    import md5 from "../../static/js/md5.min.js"; //  MD5
+    // import md5 from "../../static/js/md5.min.js"; //  MD5
     import VerifySlide from "../components/verify-slide.vue"; // 滑块验证
     export default {
         data() {

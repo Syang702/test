@@ -2,8 +2,8 @@
     <view class="content">
         <view class="wrap">
             <view class="u-tabs-box">
-                <u-tabs-swiper activeColor="#f29100" ref="tabs" :list="list" :current="current" @change="tabChange" :is-scroll="false" swiperWidth="750">
-                </u-tabs-swiper>
+<!--                <u-tabs-swiper activeColor="#f29100" ref="tabs" :list="list" :current="current" @change="tabChange" :is-scroll="false" swiperWidth="750">
+                </u-tabs-swiper> -->
             </view>
             <swiper class="swiper-box" :current="swiperCurrent" @animationfinish="animationfinish">
                 <swiper-item class="swiper-item" v-for="(j,_index) in list.length" :key="_index">

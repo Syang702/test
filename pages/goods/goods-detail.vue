@@ -188,7 +188,7 @@
         </view>
         <u-popup v-model="showParameter" mode="bottom" :closeable="true" height="80%">
             <view class="goods-parameter">
-                <u-cell-group>
+<!--                <u-cell-group>
                     <u-cell-item title="品牌" :value="data6.brandName==null?'':data6.brandName" :arrow="false">
                     </u-cell-item>
                     <u-cell-item title="型号" :value="data6.name==null?'':data6.name" :arrow="false"></u-cell-item>
@@ -258,7 +258,7 @@
                     <u-cell-item title="包装清单" :value="data6.accessories==null?'':data6.accessories" :arrow="false">
                     </u-cell-item>
                     <u-cell-item title="生产厂商" :value="data6.ext45==null?'':data6.ext45" :arrow="false"></u-cell-item>
-                </u-cell-group>
+                </u-cell-group> -->
             </view>
         </u-popup>
         <u-toast ref="uToast" />

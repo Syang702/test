@@ -22,74 +22,74 @@
             }
         },
         {
-            "path": "pages/my/my",
+            "path": "pages/user/user",
             "style": {
                 "navigationBarTitleText": "我的",
                 "navigationBarBackgroundColor": "#f1e7e7"
             }
         },
         {
-            "path": "pages/my/info",
+            "path": "pages/user/info",
             "style": {
                 "navigationBarTitleText": "用户信息"
             }
         },
         {
-            "path": "pages/my/order",
+            "path": "pages/user/order",
             "style": {
                 "navigationBarTitleText": "我的订单"
             }
         },
         {
-            "path": "pages/my/coupon",
+            "path": "pages/user/coupon",
             "style": {
                 "navigationBarTitleText": "我的优惠券"
             }
         },
         {
-            "path": "pages/my/rebate",
+            "path": "pages/user/rebate",
             "style": {
                 "navigationBarTitleText": "我的返利"
             }
         },
         {
-            "path": "pages/my/report",
+            "path": "pages/user/report",
             "style": {
                 "navigationBarTitleText": "进销存报表"
             }
         },
         {
-            "path": "pages/my/notice",
+            "path": "pages/user/notice",
             "style": {
                 "navigationBarTitleText": "公告"
             }
         },
         {
-            "path": "pages/my/notice-detail",
+            "path": "pages/user/notice-detail",
             "style": {
                 "navigationBarTitleText": "公告详情"
             }
         },
         {
-            "path": "pages/my/address",
+            "path": "pages/user/address",
             "style": {
                 "navigationBarTitleText": "地址管理"
             }
         },
         {
-            "path": "pages/my/service",
+            "path": "pages/user/service",
             "style": {
                 "navigationBarTitleText": "联系客服"
             }
         },
         {
-            "path": "pages/my/address-edit",
+            "path": "pages/user/address-edit",
             "style": {
                 "navigationBarTitleText": "编辑收货地址"
             }
         },
         {
-            "path": "pages/my/choose-date",
+            "path": "pages/user/choose-date",
             "style": {
                 "navigationBarTitleText": "选择时间"
             }
@@ -179,25 +179,25 @@
             }
         },
         {
-            "path": "pages/my/order-detail",
+            "path": "pages/user/order-detail",
             "style": {
                 "navigationBarTitleText": "订单详情"
             }
         },
         {
-            "path": "pages/my/order-logistics",
+            "path": "pages/user/order-logistics",
             "style": {
                 "navigationBarTitleText": "物流信息"
             }
         },
         {
-            "path": "pages/my/order-reimburse",
+            "path": "pages/user/order-reimburse",
             "style": {
                 "navigationBarTitleText": "申请退款"
             }
         },
         {
-            "path": "pages/my/after-sale",
+            "path": "pages/user/after-sale",
             "style": {
                 "navigationBarTitleText": "退款/售后"
             }
@@ -243,7 +243,7 @@
                 "selectedIconPath": "/static/tabbar/car_2.png"
             },
             {
-                "pagePath": "pages/my/my",
+                "pagePath": "pages/user/user",
                 "text": "我的",
                 "iconPath": "/static/tabbar/my_1.png",
                 "selectedIconPath": "/static/tabbar/my_2.png"

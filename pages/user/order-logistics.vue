@@ -2,17 +2,17 @@
 <template>
     <view class="commen-index">
         <view class="desc">
-            <u-cell-group>
+<!--            <u-cell-group>
                 <u-cell-item title="物流公司" :value="logisticsInfo.logisticsName" :arrow="false"></u-cell-item>
                 <u-cell-item title="运单编号" :value="logisticsInfo.logisticsOrder" :arrow="false">
                     <u-tag slot="right-icon" size="mini" border-color="#909399" color="#909399" text="复制" mode="plain" shape="circle" @click="setClipboard">
                     </u-tag>
                 </u-cell-item>
                 <u-cell-item title="物流电话" :value="logisticsInfo.logisticsTel" :arrow="false"></u-cell-item>
-            </u-cell-group>
+            </u-cell-group> -->
         </view>
         <view class="commen-content">
-            <u-time-line>
+<!--            <u-time-line>
                 <u-time-line-item v-for="(item,index) in logisticsInfo.detailList" :key="index">
                     <template v-slot:node>
                         <view class="u-node" style="background: #0084cf;" v-if="index==0">
@@ -26,7 +26,7 @@
                         </view>
                     </template>
                 </u-time-line-item>
-            </u-time-line>
+            </u-time-line> -->
         </view>
     </view>
 </template>

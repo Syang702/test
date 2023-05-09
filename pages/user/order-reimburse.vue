@@ -32,7 +32,7 @@
             </view>
         </view>
         <u-gap height="20"></u-gap>
-        <view class="other-box">
+<!--        <view class="other-box">
             <u-cell-group>
                 <u-cell-item title="退款类型" value="请选择"></u-cell-item>
             </u-cell-group>
@@ -42,7 +42,7 @@
             <u-cell-group>
                 <u-cell-item title="退款总额" value="￥9000.00" :arrow="false" :value-style="{color:'#f24444'}"></u-cell-item>
             </u-cell-group>
-        </view>
+        </view> -->
         <u-gap height="20"></u-gap>
         <view class="reason-content">
             <view class="title">上传凭证</view>
@@ -52,7 +52,7 @@
         <u-gap height="20"></u-gap>
         <view class="reason-content">
             <view class="title">退款原因</view>
-            <u-field v-model="reason" label-width="0" placeholder="请填写退款原因" :clearable="false" type="textarea" />
+            <!-- <u-field v-model="reason" label-width="0" placeholder="请填写退款原因" :clearable="false" type="textarea" /> -->
         </view>
         <u-gap height="120" bg-color="#fff"></u-gap>
         <view class="btn">

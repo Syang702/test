@@ -69,20 +69,39 @@ page {
     overflow: hidden;
 }
 
-// Flex 布局
-.dflex {
+.flex {
     display: flex;
+}
+.justifyStart {
+    justify-content: flex-start;
+}
+.justifyCenter {
     justify-content: center;
-    align-items: center;
 }
-.dflexsb {
-    display: flex;
-
+.justifyEnd {
+    justify-content: flex-end;
+}
+.justifyBeteen {
     justify-content: space-between;
+}
+.justifyAround {
+    justify-content: space-around;
+}
+.alignStart {
+    align-items: flex-end;
+}
+.alignCenter {
     align-items: center;
 }
-.dflexsa {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.alignEnd {
+    align-items: flex-end;
+}
+.flexWrap {
+    flex-wrap: wrap;
+}
+.flexDirColumn {
+    flex-direction: column;
+}
+.cursorPoint {
+    cursor: pointer;
 }

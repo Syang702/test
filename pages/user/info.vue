@@ -1,9 +1,9 @@
 <template>
 	<view class="index">
-		<u-cell-group>
+<!-- 		<u-cell-group>
 			<u-cell-item title="用户昵称" :value="userName" :arrow="false"></u-cell-item>
 			<u-cell-item title="绑定手机" :value="userPhone" :arrow="false"></u-cell-item>
-		</u-cell-group>
+		</u-cell-group> -->
 		<view class="button">
 			<u-button type="error" shape="circle" @click="logOut">退出登录</u-button>
 		</view>

@@ -47,11 +47,11 @@
 			</view>
 		</view>
 		<view class="other-box">
-			<u-cell-group class="group">
+<!-- 			<u-cell-group class="group">
 				<u-cell-item title="商品总额" :arrow="false" hover-class="cell-hover-class">
 					<view slot="right-icon" class=""> ￥{{ neetPayAmount }} </view>
 				</u-cell-item>
-			</u-cell-group>
+			</u-cell-group> -->
 		</view>
 		<view class="order-create-tabbar-area-bottom"></view>
 		<view class="order-create-tabbar">
