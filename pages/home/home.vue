@@ -10,6 +10,7 @@
                 <u-search placeholder="搜索商品名称/品牌" v-model="keyword" shape="round" @custom="toSearchPage()"></u-search>
             </view>
         </view>
+            <u-button text="按钮"></u-button>
         <view class="commen-content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
                 <view class="swiper">
@@ -56,63 +57,63 @@ export default {
             noticelist: [],
             classifyList: [
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/1.png",
+                    image: "images/index/1.png",
                     name: "5G手机",
                     id: "3",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/2.png",
+                    image: "images/index/2.png",
                     name: "个人智能",
                     id: "4",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/3.png",
+                    image: "images/index/3.png",
                     name: "数字家庭",
                     id: "5",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/4.png",
+                    image: "images/index/4.png",
                     name: "行业物联",
                     id: "6",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/5.png",
+                    image: "images/index/5.png",
                     name: "生态合作",
                     id: "STHZ",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/6.png",
+                    image: "images/index/6.png",
                     name: "活动专区",
                     id: "HDZQ",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/7.png",
+                    image: "images/index/7.png",
                     name: "众筹预售",
                     id: "ZC",
                 },
                 {
-                    image: "http://10.92.82.14/h5/static/images/index/8.png",
+                    image: "images/index/8.png",
                     name: "信用购",
                     id: "XYG",
                 },
             ],
             activityList: {},
-            BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+            // BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
         };
     },
     onLoad() {
-        let Authorization = uni.getStorageSync("Authorization");
-        console.log("Authorization   " + Authorization);
-        if ((Authorization = "")) {
-            uni.navigateTo({
-                url: "/pages/login/login",
-            });
-        }
+        // let Authorization = uni.getStorageSync("Authorization");
+        // console.log("Authorization   " + Authorization);
+        // if ((Authorization = "")) {
+        //     uni.navigateTo({
+        //         url: "/pages/login/login",
+        //     });
+        // }
 
-        this.getIndexInfos();
+        // this.getIndexInfos();
     },
     onShow() {
-        this.$store.dispatch("setCarBadge");
+        // this.$store.dispatch("setCarBadge");
     },
     methods: {
         getIndexInfos() {

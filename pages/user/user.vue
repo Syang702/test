@@ -9,16 +9,26 @@
                 <u-icon name="arrow-right"></u-icon>
             </view>
         </view>
+        <u-icon name="level" color="#2979ff" size="28"></u-icon>
         <view class="user-tools">
             <view class="user-tools-title"> 个性服务 </view>
-            <view class="user-tools-content">
-                <view class="user-tools-content-item" v-for="(item, index) in serviceList" :key="index">
-                    <view class="user-order-box-list" @tap="toService(item)">
-                        <u-icon :name="item.icon" size="28"></u-icon>
-                        <view class="user-order-box-list-bottom">{{ item.title }}</view>
-                    </view>
+            <!-- <view class="user-tools-content">
+                <view class="user-tools-item" v-for="(item, index) in serviceList" :key="index" @tap="toService(item)">
+                    <u-icon class="user-tools-item-icon" :name="item.icon" color="#333" size="28"></u-icon>
+                    <view class="user-tools-item-text">{{ item.title }}</view>
                 </view>
-            </view>
+            </view> -->
+            <u-cell-group>
+                <u-cell
+                    v-for="(item, index) in serviceList"
+                    :key="index"
+                    :icon="item.icon"
+                    :title="item.title"
+                    :isLink="true"
+                    :url="item.url"
+                    arrow-direction="right"
+                ></u-cell>
+            </u-cell-group>
         </view>
     </view>
 </template>
@@ -167,55 +177,50 @@
                 font-size: 32rpx;
                 font-weight: 700;
             }
-            .user-order-box {
+            .user-tools-content {
                 padding: 20rpx;
                 display: flex;
                 flex-wrap: wrap;
-                .user-order-box-list {
-                    width: 20%;
+                .user-tools-item {
+                    width: 33%;
                     text-align: center;
-                    .user-order-box-list-top {
-                        width: 100%;
-                        height: 60rpx;
-                        position: relative;
-                        i {
-                            font-size: 56rpx;
-                            font-weight: 700;
-                        }
-                        .order-num {
-                            position: absolute;
-                            right: 30rpx;
-                            top: -20rpx;
-                            width: 40rpx;
-                            height: 40rpx;
-                            line-height: 40rpx;
-                            color: #fff;
-                            font-size: 28rpx;
-                            font-weight: 600;
-                            border-radius: 50%;
-                            background-color: red;
-                        }
+                    &-icon {
                     }
-                    .user-order-box-list-bottom {
+                    &-text {
                         width: 100%;
                         height: 60rpx;
                         line-height: 60rpx;
                         color: #131313;
-                        font-size: 26rpx;
                     }
-                }
-            }
-        }
-        .user-service {
-            .user-order-box {
-                padding-bottom: 0;
-                .user-order-box-list {
-                    width: 25%;
-                    height: 140rpx;
-                    image {
-                        width: 60rpx;
-                        height: 60rpx;
-                    }
+                    // .user-order-box-list-top {
+                    //     width: 100%;
+                    //     height: 60rpx;
+                    //     position: relative;
+                    //     i {
+                    //         font-size: 56rpx;
+                    //         font-weight: 700;
+                    //     }
+                    //     .order-num {
+                    //         position: absolute;
+                    //         right: 30rpx;
+                    //         top: -20rpx;
+                    //         width: 40rpx;
+                    //         height: 40rpx;
+                    //         line-height: 40rpx;
+                    //         color: #fff;
+                    //         font-size: 28rpx;
+                    //         font-weight: 600;
+                    //         border-radius: 50%;
+                    //         background-color: red;
+                    //     }
+                    // }
+                    // .user-order-box-list-bottom {
+                    //     width: 100%;
+                    //     height: 60rpx;
+                    //     line-height: 60rpx;
+                    //     color: #131313;
+                    //     font-size: 26rpx;
+                    // }
                 }
             }
         }

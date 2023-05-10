@@ -343,7 +343,7 @@ export default {
             popupStyle: {
                 'paddingTop': '100rpx'
             },
-            BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+            // BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
             selectedColor: '',
             selectedQty: '',
             selectedNum: 1,

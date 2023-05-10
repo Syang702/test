@@ -53,7 +53,7 @@ import { getSearchedGoodsList } from '../../config/api.js'
 export default {
     data() {
         return {
-            BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+            // BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
             keyword: '',
             queryList: { //请求接口传的参数
             },

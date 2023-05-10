@@ -101,7 +101,7 @@
 		computed: {},
 		data() {
 			return {
-				BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+				// BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
 				addressInfo: {},
 				couponList: [],
 				selectCoupons: [],

@@ -67,7 +67,7 @@
 	export default {
 		data() {
 			return {
-				BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+				// BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
 				moneyTotal: 0.0,
 				flag: "激活",
 				allPrice: 0,

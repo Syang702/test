@@ -100,7 +100,7 @@
 		},
 		data() {
 			return {
-				BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+				// BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
 				addressInfo: {},
 				flag: 0,
 				neetPayAmount: 0,

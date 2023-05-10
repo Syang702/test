@@ -61,7 +61,7 @@ import { getPromotionData } from '../../config/api.js'
 export default {
     data() {
         return {
-            BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
+            // BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
             keyword: '',
 			visitCount: '0',
 			fromIndex:false,
