@@ -6,8 +6,8 @@
         <!-- 带城市、搜索框的导航栏 -->
         <navbar-city-search :cityListSelected="nowSelectedCity"></navbar-city-search>
         <view class="flex justifyEnd">
-            <u-button type="primary" class="ml-10 scan-code" @click="scanCode">扫码</u-button>
-            <u-button type="primary" class="ml-10" @click="batchControl">添加批量控制</u-button>
+            <u-button type="primary" class="mr-10 scan-code" @click="scanCode">扫码</u-button>
+            <u-button type="primary" class="mr-10" @click="batchControl">添加批量控制</u-button>
         </view>
         <view class="commen-content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
@@ -215,7 +215,13 @@
                     animationDuration: 200,
                 });
             },
-            scanCode() {},
+            scanCode() {
+                uni.scanCode({
+                    success: function (res) {
+                        console.log("返回值：", res);
+                    },
+                });
+            },
             batchControl() {},
         },
     };

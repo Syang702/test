@@ -33,7 +33,8 @@
                 </view> -->
             </view>
         </view>
-        <view class="slot-height" :style="[{ height: navBarHeight + menuHeight + menuTop + 11 + 'px' }]"></view>
+        <view class="slot-height" :style="[{ height: menuHeight + navBarHeight - menuHeight - menuTop + 11 + 'px' }]"></view>
+        <!-- <view class="slot-height" :style="[{ height: navBarHeight + menuHeight + menuTop + 11 + 'px' }]"></view> -->
     </view>
 </template>
 
@@ -82,6 +83,12 @@
             } else {
                 this.getLocation();
             }
+            // console.log("menuTop", this.menuTop);
+            // console.log("navBarHeight", this.navBarHeight);
+            // console.log("menuRight", this.menuRight);
+            // console.log("menuBotton", this.menuBotton);
+            // console.log("menuHeight", this.menuHeight);
+            // console.log("statusBarHeight", this.statusBarHeight);
         },
         methods: {
             // 跳转城市选择页面
