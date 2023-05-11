@@ -9,9 +9,8 @@
                 <u-icon name="arrow-right"></u-icon>
             </view>
         </view>
-        <u-icon name="level" color="#2979ff" size="28"></u-icon>
         <view class="user-tools">
-            <view class="user-tools-title"> 个性服务 </view>
+            <!-- <view class="user-tools-title">个性服务</view> -->
             <!-- <view class="user-tools-content">
                 <view class="user-tools-item" v-for="(item, index) in serviceList" :key="index" @tap="toService(item)">
                     <u-icon class="user-tools-item-icon" :name="item.icon" color="#333" size="28"></u-icon>
@@ -19,7 +18,8 @@
                 </view>
             </view> -->
             <u-cell-group>
-                <u-cell
+                <u-cell-item
+                    class="user-tools-item"
                     v-for="(item, index) in serviceList"
                     :key="index"
                     :icon="item.icon"
@@ -27,7 +27,7 @@
                     :isLink="true"
                     :url="item.url"
                     arrow-direction="right"
-                ></u-cell>
+                ></u-cell-item>
             </u-cell-group>
         </view>
     </view>
@@ -113,9 +113,7 @@
             // }
             // this.userName = uni.getStorageSync("userName");
         },
-        onShow() {
-            // this.$store.dispatch("setCarBadge");
-        },
+        onShow() {},
         methods: {
             toService(params) {
                 uni.navigateTo({
@@ -168,60 +166,34 @@
             margin: 20rpx;
             border-radius: 20rpx;
             background: #ffffff;
-            .user-tools-title {
-                padding: 0 20rpx;
-                height: 95rpx;
-                line-height: 94rpx;
-                border-bottom: 1px solid #ebebeb;
-                color: #0f0f0f;
-                font-size: 32rpx;
-                font-weight: 700;
-            }
+            // .user-tools-title {
+            //     padding: 0 20rpx;
+            //     height: 95rpx;
+            //     line-height: 94rpx;
+            //     border-bottom: 1px solid #ebebeb;
+            //     color: #0f0f0f;
+            //     font-size: 32rpx;
+            //     font-weight: 700;
+            // }
             .user-tools-content {
                 padding: 20rpx;
-                display: flex;
-                flex-wrap: wrap;
+                // display: flex;
+                // flex-wrap: wrap;
                 .user-tools-item {
-                    width: 33%;
-                    text-align: center;
-                    &-icon {
-                    }
-                    &-text {
-                        width: 100%;
-                        height: 60rpx;
-                        line-height: 60rpx;
-                        color: #131313;
-                    }
-                    // .user-order-box-list-top {
-                    //     width: 100%;
-                    //     height: 60rpx;
-                    //     position: relative;
-                    //     i {
-                    //         font-size: 56rpx;
-                    //         font-weight: 700;
-                    //     }
-                    //     .order-num {
-                    //         position: absolute;
-                    //         right: 30rpx;
-                    //         top: -20rpx;
-                    //         width: 40rpx;
-                    //         height: 40rpx;
-                    //         line-height: 40rpx;
-                    //         color: #fff;
-                    //         font-size: 28rpx;
-                    //         font-weight: 600;
-                    //         border-radius: 50%;
-                    //         background-color: red;
-                    //     }
+                    // &-icon {
                     // }
-                    // .user-order-box-list-bottom {
+                    // &-text {
                     //     width: 100%;
                     //     height: 60rpx;
                     //     line-height: 60rpx;
                     //     color: #131313;
-                    //     font-size: 26rpx;
                     // }
                 }
+            }
+            ::v-deep .u-cell {
+                color: #0f0f0f;
+                font-size: 32rpx;
+                font-weight: 700;
             }
         }
     }

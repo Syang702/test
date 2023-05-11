@@ -15,7 +15,7 @@ $app-theme-deep-color: #8a90ff;
 $app-theme-bg-color: #ffffff;
 $app-theme-bg-gray-color: #fafafa;
 $app-theme-bg-gray-deep-color: #f8f8f8;
-$app-theme-search-bg-color: #F4F5F8;
+$app-theme-search-bg-color: #f4f5f8;
 
 // 内容色
 
@@ -60,8 +60,9 @@ $app-zIndex-page: 999;
 // 全局.page
 
 .page {
-	min-height: 100vh;
-	background-color: $app-theme-bg-gray-color;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $app-theme-bg-gray-color;
 }
 
 // 全局.slot
@@ -72,35 +73,35 @@ $app-zIndex-page: 999;
 // 导出 scss 变量用于在 script 下使用
 
 :export {
-	appThemeColor: $app-theme-color;
-	appThemeBgColor: $app-theme-bg-color;
-	appThemeBgGrayColor: $app-theme-bg-gray-color;
-	appThemeBgGrayDeppColor: $app-theme-bg-gray-deep-color;
-	appThemeSearchBgColor: $app-theme-search-bg-color;
-	appThemeBorderColor: $app-theme-border-color;
-	appThemeTextColor: $app-theme-text-color;
-	appThemeTextGrayColor: $app-theme-text-gray-color;
-	appThemeTextGrayLightColor: $app-theme-card-gray-light-color;
-	appThemeTextGrayDeepColor: $app-theme-card-gray-deep-color;
-	appThemeTextWhiteColor: $app-theme-text-white-color;
-	appThemeTextBlackColor: $app-theme-text-black-color;
-	appThemeTextBlackDeepColor: $app-theme-text-black-deep-color;
-	appThemeTextMoneyColor: $app-theme-text-money-color;
-	appThemeTextGrayWhiteColor: $app-theme-text-gray-white-color;
-	appThemeSkuGrayColor: $app-theme-sku-gray-color;
-	appThemeCardGrayColor: $app-theme-card-gray-color;
-	appThemeShopGrayColor: $app-theme-shop-gray-color;
-	appThemePointsSignBgColor: $app-theme-points-sign-bg-color;
-	appThemePointsSignLabelColor: $app-theme-points-sign-label-bg-color;
-	appThemePointsSignValueColor: $app-theme-points-sign-value-color;
-	appThemePointsSignYellowColor: $app-theme-points-yellow-color;
-	appThemePointsSignBlueColor: $app-theme-points-blue-color;
-	appThemeNavbarTabColor: $app-theme-navbar-tab-color;
-	appThemeNavbarTabColorActive: $app-theme-navbar-tab-color-active;
-	appThemeShadow: $app-theme-shadow;
-	appZIndexDeep: $app-zIndex-deep;
-	appZIndexNormal: $app-zIndex-normal;
-	appZIndexAbsolute: $app-zIndex-absolute;
-	appZIndexFixed: $app-zIndex-fixed;
-	appZIndexPage: $app-zIndex-page;
+    appThemeColor: $app-theme-color;
+    appThemeBgColor: $app-theme-bg-color;
+    appThemeBgGrayColor: $app-theme-bg-gray-color;
+    appThemeBgGrayDeppColor: $app-theme-bg-gray-deep-color;
+    appThemeSearchBgColor: $app-theme-search-bg-color;
+    appThemeBorderColor: $app-theme-border-color;
+    appThemeTextColor: $app-theme-text-color;
+    appThemeTextGrayColor: $app-theme-text-gray-color;
+    appThemeTextGrayLightColor: $app-theme-card-gray-light-color;
+    appThemeTextGrayDeepColor: $app-theme-card-gray-deep-color;
+    appThemeTextWhiteColor: $app-theme-text-white-color;
+    appThemeTextBlackColor: $app-theme-text-black-color;
+    appThemeTextBlackDeepColor: $app-theme-text-black-deep-color;
+    appThemeTextMoneyColor: $app-theme-text-money-color;
+    appThemeTextGrayWhiteColor: $app-theme-text-gray-white-color;
+    appThemeSkuGrayColor: $app-theme-sku-gray-color;
+    appThemeCardGrayColor: $app-theme-card-gray-color;
+    appThemeShopGrayColor: $app-theme-shop-gray-color;
+    appThemePointsSignBgColor: $app-theme-points-sign-bg-color;
+    appThemePointsSignLabelColor: $app-theme-points-sign-label-bg-color;
+    appThemePointsSignValueColor: $app-theme-points-sign-value-color;
+    appThemePointsSignYellowColor: $app-theme-points-yellow-color;
+    appThemePointsSignBlueColor: $app-theme-points-blue-color;
+    appThemeNavbarTabColor: $app-theme-navbar-tab-color;
+    appThemeNavbarTabColorActive: $app-theme-navbar-tab-color-active;
+    appThemeShadow: $app-theme-shadow;
+    appZIndexDeep: $app-zIndex-deep;
+    appZIndexNormal: $app-zIndex-normal;
+    appZIndexAbsolute: $app-zIndex-absolute;
+    appZIndexFixed: $app-zIndex-fixed;
+    appZIndexPage: $app-zIndex-page;
 }

@@ -39,11 +39,6 @@
 
 <style lang="scss">
     @import "uview-ui/index.scss";
-    // ===
-    // === 注意：此处导入的css，会作用于全部.vue文件，请适量导入
-    // ===
-
-
     /* 解决小程序和app滚动条的问题 */
     /* #ifdef MP-WEIXIN || APP-PLUS */
     ::-webkit-scrollbar {
