@@ -14,7 +14,8 @@
             >
                 <view class="loaction-slot">
                     <view class="loaction-title" v-if="locationStatus == 1"><text>正在获取地理位置...</text></view>
-                    <view class="loaction-title" v-if="locationStatus == 2" @click="goCitySelectPage">
+                    <!-- <view class="loaction-title" v-if="locationStatus == 2" @click="goCitySelectPage"> -->
+                    <view class="loaction-title" v-if="locationStatus == 2" @click="showSelectArea = true">
                         <text>{{ cityListSelected ? cityListSelected : locationCity }}</text>
                         <u-icon style="margin-left: 8rpx" :size="18" color="#171717" name="arrow-down-fill"></u-icon>
                     </view>
@@ -35,6 +36,7 @@
         </view>
         <view class="slot-height" :style="[{ height: menuHeight + navBarHeight - menuHeight - menuTop + 11 + 'px' }]"></view>
         <!-- <view class="slot-height" :style="[{ height: navBarHeight + menuHeight + menuTop + 11 + 'px' }]"></view> -->
+        <u-picker mode="region" ref="uPicker" v-model="showSelectArea" :area-code="['41', '4101', '410102']" @confirm="confirmArea" />
     </view>
 </template>
 
@@ -55,10 +57,10 @@
                 default: "请输入",
             },
             // 已经选择的城市
-            cityListSelected: {
-                type: String,
-                default: "",
-            },
+            // cityListSelected: {
+            //     type: String,
+            //     default: "",
+            // },
         },
         data() {
             return {
@@ -75,6 +77,8 @@
                 locationCity: "",
                 // 获取地理位置状态，1正在获取，2获取成功，3失败
                 locationStatus: 1,
+                showSelectArea: false,
+                cityListSelected: "",
             };
         },
         mounted() {
@@ -92,19 +96,17 @@
         },
         methods: {
             // 跳转城市选择页面
-            goCitySelectPage() {
-                uni.navigateTo({
-                    url: "/pages/home/city-list?nowCity=" + this.locationCity,
-                });
-            },
-
+            // goCitySelectPage() {
+            //     uni.navigateTo({
+            //         url: "/pages/home/city-list?nowCity=" + this.locationCity,
+            //     });
+            // },
             // 去搜索页面
-            goSearchPage() {
-                uni.navigateTo({
-                    url: "/pages/search",
-                });
-            },
-
+            // goSearchPage() {
+            //     uni.navigateTo({
+            //         url: "/pages/search",
+            //     });
+            // },
             // 获取地理位置
             async getLocation(isAgain = false) {
                 this.locationStatus = 1;
@@ -118,13 +120,13 @@
                     });
                 }
             },
-
             // 设置定位数据
             setLocationData(res) {
+                //'adcode'
                 if (res.status) {
                     this.locationStatus = 2;
                     this.locationData = res.data;
-                    this.locationCity = res.data.ad_info.city;
+                    this.locationCity = res.data.ad_info.province + "-" + res.data.ad_info.city + "-" + res.data.ad_info.district;
                     this.$store.commit("user/COMMIT_LOACTION_INFO", res.data);
                 } else {
                     this.locationStatus = 3;
@@ -134,6 +136,10 @@
                         icon: "none",
                     });
                 }
+            },
+            confirmArea(result) {
+                this.cityListSelected = result.province.label + "-" + result.city.label + "-" + result.area.label;
+                uni.setStorageSync("NOW_SELECTED_CITY", result);
             },
         },
     };

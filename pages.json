@@ -9,12 +9,6 @@
                 "navigationBarTitleText": "大鹏"
             }
         },
-        {
-            "path": "pages/home/city-list",
-            "style": {
-                "navigationBarTitleText": "选择城市"
-            }
-        },
         // {
         //     "path": "pages/classify/classify",
         //     "style": {

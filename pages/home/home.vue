@@ -6,29 +6,33 @@
         <!-- 带城市、搜索框的导航栏 -->
         <navbar-city-search :cityListSelected="nowSelectedCity"></navbar-city-search>
         <view class="flex justifyEnd">
-            <u-button type="primary" class="mr-10 scan-code" @click="scanCode">扫码</u-button>
-            <u-button type="primary" class="mr-10" @click="batchControl">添加批量控制</u-button>
+            <u-button type="primary" size="mini" class="mr-20" @click="scanCode">扫码添加</u-button>
+            <u-button type="primary" size="mini" class="mr-20" @click="batchControl">添加批量控制</u-button>
         </view>
-        <view class="commen-content">
+        <view class="content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
-                <view class="swiper">
-                    <u-swiper :list="swiperList" name="IMAGE_URL" height="300" @click="ADtoHDZQ()"></u-swiper>
-                </view>
-                <view class="notice" @tap="toNotice">
-                    <u-notice-bar mode="horizontal" :is-circular="true" :speed="100" :more-icon="true" :list="noticelist"></u-notice-bar>
-                </view>
                 <view class="list">
-                    <view class="list-item" v-for="(value, key, index) in activityList" :key="index" @click="toHDZQ(key)">
-                        <view class="list-item-header">
-                            <view class="list-item-title">
-                                <span>{{ key }}</span>
-                                <text class="icon iconfont icon-test3"></text>
-                            </view>
+                    <view class="list-item" v-for="(item, index) in classifyList" :key="index" @click="toItem(item)">
+                        <view class="list-item-header flex">
+                            <view class="list-item-name">{{ item.name }}</view>
                         </view>
-                        <view class="list-item-body">
-                            <view class="list-item-body-evely" v-for="item in value" :key="item.LINE_ID">
-                                <p>{{ item.CURRENT_PRICE }}</p>
+                        <view class="flex justifyBeteen">
+                            <view class="list-item-status"
+                                >当前设备正常{{ item.status }}
+                                <u-icon name="checkmark-circle" color="#42b983"></u-icon>
                             </view>
+                            <view class="list-item-time">剩余{{ item.time }}天</view>
+                        </view>
+                        <view class="flex justifyBeteen">
+                            <view
+                                >温度(℃) <text class="list-item-text">{{ item.wd }}</text>
+                            </view>
+                            <view
+                                >湿度(%) <text class="list-item-text">{{ item.sd }}</text></view
+                            >
+                            <view
+                                >光照(Lux) <text class="list-item-text">{{ item.gz }}</text></view
+                            >
                         </view>
                     </view>
                 </view>
@@ -44,56 +48,35 @@
         components: { NavbarCitySearch },
         data() {
             return {
-                nowSelectedCity: "",
-                // /////////////////////////
-                keyword: "",
-                urlValue: "",
-                swiperList: [],
-                noticelist: [],
                 classifyList: [
                     {
-                        image: "images/index/1.png",
-                        name: "5G手机",
-                        id: "3",
+                        wd: "32.6",
+                        sd: "64.5",
+                        gz: "9151",
+                        number: "2551",
+                        name: "王小二6号大棚",
+                        time: "25",
+                        status: "success",
                     },
                     {
-                        image: "images/index/2.png",
-                        name: "个人智能",
-                        id: "4",
+                        wd: "32.6",
+                        sd: "64.5",
+                        gz: "9151",
+                        number: "2551",
+                        name: "王小二6号大棚",
+                        time: "25",
+                        status: "success",
                     },
                     {
-                        image: "images/index/3.png",
-                        name: "数字家庭",
-                        id: "5",
-                    },
-                    {
-                        image: "images/index/4.png",
-                        name: "行业物联",
-                        id: "6",
-                    },
-                    {
-                        image: "images/index/5.png",
-                        name: "生态合作",
-                        id: "STHZ",
-                    },
-                    {
-                        image: "images/index/6.png",
-                        name: "活动专区",
-                        id: "HDZQ",
-                    },
-                    {
-                        image: "images/index/7.png",
-                        name: "众筹预售",
-                        id: "ZC",
-                    },
-                    {
-                        image: "images/index/8.png",
-                        name: "信用购",
-                        id: "XYG",
+                        wd: "32.6",
+                        sd: "64.5",
+                        gz: "9151",
+                        number: "2551",
+                        name: "王小二6号大棚",
+                        time: "25",
+                        status: "success",
                     },
                 ],
-                activityList: {},
-                // BASE_IMG_URL: getApp().globalData.$BASE_IMG_URL,
             };
         },
         onLoad() {
@@ -106,114 +89,13 @@
             // }
             // this.getIndexInfos();
         },
-        onShow() {
-            // 处理是否手动选择了城市
-            let nowSelectedCity = uni.getStorageSync("NOW_SELECTED_CITY");
-            if (nowSelectedCity) {
-                this.nowSelectedCity = nowSelectedCity;
-                uni.clearStorageSync("NOW_SELECTED_CITY");
-            }
-            // this.$store.dispatch("setCarBadge");
-        },
         methods: {
-            getIndexInfos() {
-                getIndexInfos().then((res) => {
-                    //轮播
-                    res.data.ADs.forEach((item) => {
-                        item.IMAGE_URL = this.BASE_IMG_URL + item.IMAGE_URL;
-                        let hrefStr = item.HREF;
-                        if (hrefStr.indexOf("FLASHSALE_LIST_INIT") != -1 || hrefStr.indexOf("PROMOT_LIST_INIT") != -1) {
-                            let paramStr = hrefStr.substr(hrefStr.indexOf("?") + 1);
-                            let paramsArry = decodeURI(paramStr).split("&");
-                            let paramsJson = {};
-                            for (let i = 0; i < paramsArry.length; i++) {
-                                let keyValue = paramsArry[i].split("=");
-                                paramsJson[keyValue[0]] = keyValue[1];
-                            }
-                            item.blockName = paramsJson.blockName;
-                            item.brandName = paramsJson.lineBlockName;
-                            item.orderType = paramsJson.orderType;
-                        } else {
-                            item.blockName = "OTHERAD";
-                            item.brandName = "OTHERAD";
-                            item.orderType = "OTHERAD";
-                        }
-                        this.swiperList.push(item);
-                    });
-                    //公告
-                    res.data.notifications.forEach((item) => {
-                        this.noticelist.push(item.TITLE);
-                    });
-                    //活动
-                    this.activityList = res.data.promotions.promotionGoods;
-                    console.log(this.activityList);
-                    Object.keys(this.activityList).forEach((key) => {
-                        if (this.activityList[key].length == 0) {
-                            this.$delete(this.activityList, key);
-                        }
-                    });
-                });
-            },
-            toSearchPage() {
-                uni.navigateTo({
-                    url: "/pages/goods/goods-list-search?keyword=" + this.keyword,
-                });
-            },
-            toHDZQ(key) {
-                //商品列表到活动专区
-
-                let arrayTemp = this.activityList[key];
-                let blockName = key;
-                let orderType = arrayTemp[0].ORDER_TYPE;
-                var urlParam = "?blockName=" + blockName + "&brandName=all&fromAD=Y&orderType=" + orderType;
-                uni.navigateTo({
-                    url: "/pages/goods/goods-list-HDZQ" + urlParam,
-                });
-            },
-            ADtoHDZQ(index) {
-                //广告到活动专区
-                let arrayTemp = this.swiperList[index];
-                let blockName = arrayTemp.blockName;
-                let brandName = arrayTemp.brandName;
-                let orderType = arrayTemp.orderType;
-                if ("OTHERAD" == blockName) {
-                    return;
-                }
-                var urlParam = "?blockName=" + blockName + "&brandName=" + brandName + "&fromAD=Y&orderType=" + orderType;
-                uni.navigateTo({
-                    url: "/pages/goods/goods-list-HDZQ" + urlParam,
-                });
-            },
-            // 商品列表&活动页
-            toClassify(id) {
-                if (id == "STHZ") {
-                    //生态合作
-                    this.urlValue = "/pages/goods/goods-list-ECO";
-                } else if (id == "HDZQ") {
-                    //活动专区
-                    this.urlValue = "/pages/goods/goods-list-HDZQ?blockName=firstBlock";
-                } else if (id == "ZC") {
-                    //众筹预售
-                    this.urlValue = "/pages/goods/goods-list-ZC";
-                } else if (id == "XYG") {
-                    //信用购
-                    this.urlValue = "/pages/goods/goods-list-XYG";
-                } else {
-                    //手机 个人智能 数字家庭 行业物联
-                    this.urlValue = "/pages/goods/goods-list-common?classify=" + id;
-                }
-                uni.navigateTo({
-                    url: this.urlValue,
-                    animationType: "pop-in",
-                    animationDuration: 200,
-                });
-            },
-            toNotice() {
-                uni.navigateTo({
-                    url: "/pages/my/notice",
-                    animationType: "pop-in",
-                    animationDuration: 200,
-                });
+            toItem() {
+                // uni.navigateTo({
+                //     url: "/pages/user/info",
+                //     animationType: "pop-in",
+                //     animationDuration: 200,
+                // });
             },
             scanCode() {
                 uni.scanCode({
@@ -228,78 +110,36 @@
 </script>
 
 <style lang="scss" scoped>
-    // .login {
-    //     height: 100rpx;
-    //     padding: 10rpx 20rpx;
-    //     @include flex-center(flex-start, center);
-    // }
-    .commen-content {
-        padding: 0 !important;
-        .swiper {
-            padding: 0 20rpx;
-        }
-        .notice {
-            padding: 20rpx 20rpx;
-        }
-        .classify {
-            display: flex;
-            flex-wrap: wrap;
-            .classify-every {
-                width: 20%;
-                height: 160rpx;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                image {
-                    width: 100rpx;
-                    height: 100rpx;
-                }
-                .classify-every-text {
-                    width: 100%;
-                    height: 60rpx;
-                    line-height: 60rpx;
-                    text-align: center;
-                }
-            }
-        }
+    .content {
+        padding: 20rpx;
         .list {
-            background-color: #f3f4f6;
-            padding: 20rpx;
+            // background-color: #f3f4f6;
             .list-item {
-                background: #ffffff;
+                padding: 10rpx;
+                background-color: #ffffff;
                 border-radius: 20rpx;
-                margin-bottom: 20rpx;
-                .list-item-header {
-                    height: 70rpx;
-                    line-height: 70rpx;
-                    padding-left: 26rpx;
-                    font-size: 34rpx;
-                    font-weight: bold;
-                    .iconfont {
-                        font-size: 38rpx;
-                    }
+                margin-bottom: 30rpx;
+                box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+                border-color: #eee;
+                > view {
+                    height: 80rpx;
+                    line-height: 80rpx;
                 }
-                .list-item-body {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 20rpx;
-                    .list-item-body-evely {
-                        width: calc(100% / 3);
-                        display: flex;
-                        justify-content: center;
-                        flex-wrap: wrap;
-                        image {
-                            width: 220rpx;
-                            height: 220rpx;
-                        }
-                        p {
-                            font-size: 30rpx;
-                            color: #f24444;
-                            height: 80rpx;
-                            line-height: 80rpx;
-                        }
-                    }
+                .list-item-header {
+                    // height: 80rpx;
+                    // line-height: 80rpx;
+                    border-bottom: 2rpx solid #eee;
+                }
+                &-name {
+                    font-size: 32rpx;
+                    font-weight: 700;
+                }
+                &-status {
+                    font-size: 30rpx;
+                }
+                &-text {
+                    color: $app-theme-points-yellow-color;
+                    margin-left: 10rpx;
                 }
             }
         }
