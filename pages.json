@@ -6,7 +6,13 @@
         {
             "path": "pages/home/home",
             "style": {
-                "navigationBarTitleText": "大鹏"
+                "navigationBarTitleText": "我的大棚"
+            }
+        },
+        {
+            "path": "pages/home/houseControl",
+            "style": {
+                "navigationBarTitleText": "大棚信息"
             }
         },
         // {

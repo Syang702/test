@@ -29,6 +29,13 @@
 //         padding: 20rpx;
 //     }
 // }
+.card-shadow {
+    padding: 10rpx;
+    background-color: #ffffff;
+    border-radius: 20rpx;
+    margin-bottom: 30rpx;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
 // 文字多余 省略号
 .overflow-ellipsis {
     white-space: nowrap;

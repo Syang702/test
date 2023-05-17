@@ -6,8 +6,8 @@
         <!-- 带城市、搜索框的导航栏 -->
         <navbar-city-search :cityListSelected="nowSelectedCity"></navbar-city-search>
         <view class="flex justifyEnd">
-            <u-button type="primary" size="mini" class="mr-20" @click="scanCode">扫码添加</u-button>
-            <u-button type="primary" size="mini" class="mr-20" @click="batchControl">添加批量控制</u-button>
+            <u-button type="primary" size="default" class="mr-20" @click="scanCode">扫码添加</u-button>
+            <u-button type="primary" size="default" class="mr-20" @click="batchControl">添加批量控制</u-button>
         </view>
         <view class="content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
@@ -76,6 +76,15 @@
                         time: "25",
                         status: "success",
                     },
+                    {
+                        wd: "32.6",
+                        sd: "64.5",
+                        gz: "9151",
+                        number: "2551",
+                        name: "王小二6号大棚",
+                        time: "25",
+                        status: "success",
+                    },
                 ],
             };
         },
@@ -91,11 +100,11 @@
         },
         methods: {
             toItem() {
-                // uni.navigateTo({
-                //     url: "/pages/user/info",
-                //     animationType: "pop-in",
-                //     animationDuration: 200,
-                // });
+                uni.navigateTo({
+                    url: "/pages/home/houseControl",
+                    animationType: "pop-in",
+                    animationDuration: 200,
+                });
             },
             scanCode() {
                 uni.scanCode({
@@ -135,11 +144,12 @@
                     font-weight: 700;
                 }
                 &-status {
-                    font-size: 30rpx;
+                    font-size: 32rpx;
                 }
                 &-text {
                     color: $app-theme-points-yellow-color;
                     margin-left: 10rpx;
+                    font-size: 32rpx;
                 }
             }
         }
