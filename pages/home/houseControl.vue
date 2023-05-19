@@ -1,4 +1,3 @@
-/* 首页 */
 <template>
     <view class="page">
         <Navbar title="大棚控制"></Navbar>
@@ -10,11 +9,11 @@
             >
         </view>
         <view class="flex justifyEnd">
-            <u-button type="primary" size="default" class="mr-20" @click="toSet">大棚设置</u-button>
-            <u-button type="primary" size="default" class="mr-20" @click="toSet">卷帘设置</u-button>
-            <u-button type="primary" size="default" class="mr-20" @click="toSet">风帘设置</u-button>
+            <u-button type="primary" size="medium" class="mr-20" @click="toSet">大棚设置</u-button>
+            <u-button type="primary" size="medium" class="mr-20" @click="toSet">卷帘设置</u-button>
+            <u-button type="primary" size="medium" class="mr-20" @click="toSet">风帘设置</u-button>
         </view>
-        <view class="card-shadow">
+        <view class="card-shadow" style="margin-top:20rpx">
             <view class="card-shadow-header">{{ "第一组温湿光" }}</view>
             <view class="flex justifyBeteen card-shadow-content">
                 <view
@@ -31,7 +30,7 @@
         <view class="content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
                 <view class="list">
-                    <view class="list-item" v-for="(item, index) in classifyList" :key="index" @click="toItem(item)">
+                    <view class="card-shadow" v-for="(item, index) in classifyList" :key="index" @click="toItem(item)">
                         <view class="list-item-header flex">
                             <view class="list-item-name">{{ item.name }}</view>
                             <view> <view class="list-item-text"></view>上限位 <view class="list-item-text"></view>下限位 </view>

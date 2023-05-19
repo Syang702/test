@@ -6,8 +6,8 @@
         <!-- 带城市、搜索框的导航栏 -->
         <navbar-city-search :cityListSelected="nowSelectedCity"></navbar-city-search>
         <view class="flex justifyEnd">
-            <u-button type="primary" size="default" class="mr-20" @click="scanCode">扫码添加</u-button>
-            <u-button type="primary" size="default" class="mr-20" @click="batchControl">添加批量控制</u-button>
+            <u-button type="primary" size="medium" class="mr-20" @click="scanCode">扫码添加</u-button>
+            <u-button type="primary" size="medium" class="mr-20" @click="batchControl">添加批量控制</u-button>
         </view>
         <view class="content">
             <scroll-view scroll-y style="height: 100%; width: 100%">
@@ -101,7 +101,7 @@
         methods: {
             toItem() {
                 uni.navigateTo({
-                    url: "/pages/home/houseControl",
+                    url: "/pages/home/houseInfo",
                     animationType: "pop-in",
                     animationDuration: 200,
                 });

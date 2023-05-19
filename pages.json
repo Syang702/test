@@ -4,6 +4,12 @@
     },
     "pages": [
         {
+            "path": "pages/home/sensorAlarm",
+            "style": {
+                "navigationBarTitleText": "传感器报警"
+            }
+        },
+        {
             "path": "pages/home/home",
             "style": {
                 "navigationBarTitleText": "我的大棚"
@@ -15,6 +21,29 @@
                 "navigationBarTitleText": "大棚信息"
             }
         },
+        {
+            "path": "pages/home/xwyczdpz",
+            "style": {
+                "navigationBarTitleText": "限位延迟自动配置"
+            }
+        },
+        {
+            "path": "pages/home/houseControl1",
+            "style": {
+                "navigationBarTitleText": "大棚控制"
+            }
+        },
+        // {
+        //     "path": "pages/home/sensorAlarm",
+        //     "style": {
+        //         "navigationBarTitleText": "传感器报警"
+        //     }
+        // },
+
+
+
+
+
         // {
         //     "path": "pages/classify/classify",
         //     "style": {
