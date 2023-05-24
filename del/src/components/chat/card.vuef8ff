@@ -1,4 +1,0 @@
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"card"}},[_c('header',[_c('img',{staticClass:"avatar",attrs:{"src":_vm.user.userface,"alt":_vm.user.name}}),_c('p',{staticClass:"name"},[_vm._v(_vm._s(_vm.user.name))])]),_c('footer',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.$store.state.filterKey),expression:"$store.state.filterKey"}],staticClass:"search",attrs:{"type":"text","placeholder":"search user..."},domProps:{"value":(_vm.$store.state.filterKey)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.$store.state, "filterKey", $event.target.value)}}})])])}
-var staticRenderFns = []
-
-export { render, staticRenderFns }
