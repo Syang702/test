@@ -1,0 +1,4 @@
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"uesrtext"}},[_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.content),expression:"content"}],attrs:{"placeholder":" Ctrl + Enter 发送"},domProps:{"value":(_vm.content)},on:{"keyup":_vm.addMessage,"input":function($event){if($event.target.composing){ return; }_vm.content=$event.target.value}}}),_c('div',{staticStyle:{"background-color":"#fff","float":"right"}},[_c('el-button',{staticStyle:{"margin":"0 20px 10px 10px"},attrs:{"type":"success","size":"mini","plain":""},on:{"click":_vm.send}},[_vm._v("发送(S) ")])],1)])}
+var staticRenderFns = []
+
+export { render, staticRenderFns }
