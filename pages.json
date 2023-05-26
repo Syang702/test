@@ -4,9 +4,9 @@
     },
     "pages": [
         {
-            "path": "pages/home/sensorAlarm",
+            "path": "pages/home/fljcsz",
             "style": {
-                "navigationBarTitleText": "传感器报警"
+                "navigationBarTitleText": "风帘基础设置"
             }
         },
         {
@@ -33,17 +33,32 @@
                 "navigationBarTitleText": "大棚控制"
             }
         },
+        {
+            "path": "pages/home/sensorAlarm",
+            "style": {
+                "navigationBarTitleText": "传感器报警"
+            }
+        },
+        {
+            "path": "pages/home/zdjlsz",
+            "style": {
+                "navigationBarTitleText": "自动卷帘设置"
+            }
+        },
+        {
+            "path": "pages/home/plantManage",
+            "style": {
+                "navigationBarTitleText": "种植管理"
+            }
+        },
         // {
-        //     "path": "pages/home/sensorAlarm",
+        //     "path": "pages/home/fljcsz",
         //     "style": {
-        //         "navigationBarTitleText": "传感器报警"
+        //         "navigationBarTitleText": "风帘基础设置"
         //     }
         // },
 
-
-
-
-
+        // ==================================================
         // {
         //     "path": "pages/classify/classify",
         //     "style": {

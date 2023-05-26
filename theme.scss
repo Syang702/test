@@ -57,19 +57,6 @@ $app-zIndex-absolute: 99;
 $app-zIndex-fixed: 199;
 $app-zIndex-page: 999;
 
-// 全局.page
-
-.page {
-    width: 100%;
-    min-height: 100vh;
-    background-color: $app-theme-bg-gray-color;
-}
-
-// 全局.slot
-
-.slot {
-}
-
 // 导出 scss 变量用于在 script 下使用
 
 :export {

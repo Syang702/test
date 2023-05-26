@@ -123,3 +123,25 @@
 .mr-20 {
     margin-right: 20rpx;
 }
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $app-theme-bg-gray-color;
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        // height: calc(100vh - 180rpx);
+        // height: calc(100vh - var(--status-bar-height));
+        .page-warp {
+            // height: calc(100vh - var(navBarHeight));
+            overflow: auto;
+            // min-height: calc(100% - 170rpx);
+            flex: 1;
+        }
+        .page-btn {
+            width: 100%;
+            height: 170rpx;
+        }
+    }
+}
