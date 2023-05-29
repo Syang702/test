@@ -43,11 +43,12 @@
 
 <script>
     import NavbarCitySearch from "@/components/navbar/navbar-city-search.vue";
-
+    import amap from "@/utils/amap-wx.js"; //自己js的所在的位置
     export default {
         components: { NavbarCitySearch },
         data() {
             return {
+                amapPlugin: "",
                 classifyList: [
                     {
                         wd: "32.6",
@@ -97,6 +98,26 @@
             //     });
             // }
             // this.getIndexInfos();
+            const amapPlugin = new amap.AMapWX({
+                key: "7cf1b0e5033710b3226a2d32dec22d6b",
+            });
+            var that = this;
+            // var myAmapFun = new amap.AMapWX({ key: "你申请的高德key" });
+            amapPlugin.getWeather({
+                type: "forecast", //表示获取的是预报信息 默认live（实时天气）
+                success: function (data) {
+                    console.log(data);
+                    //成功回调
+                    var weatherarr = new Array(3);
+                    for (var i = 0; i < 3; i++) {
+                        weatherarr[i] = data.forecast.casts[i + 1]; //获取后三天预报信息 今日的不保存
+                    }
+                },
+                fail: function (info) {
+                    //失败回调
+                    console.log(info);
+                },
+            });
         },
         methods: {
             toItem() {

@@ -42,6 +42,8 @@
 
 <script>
     import { getLocation, getLocationAgain } from "@/utils/location.js";
+    //高德SDKjs
+    import amap from "@/utils/amap-wx.js"; //自己js的所在的位置
     const app = getApp();
     export default {
         name: "navbar-city-search",
@@ -79,6 +81,7 @@
                 locationStatus: 1,
                 showSelectArea: false,
                 cityListSelected: "",
+                amapPlugin: "",
             };
         },
         mounted() {
@@ -93,6 +96,11 @@
             // console.log("menuBotton", this.menuBotton);
             // console.log("menuHeight", this.menuHeight);
             // console.log("statusBarHeight", this.statusBarHeight);
+        },
+        onLoad() {
+            // this.amapPlugin = new amap.AMapWX({
+            //     key: "7cf1b0e5033710b3226a2d32dec22d6b",
+            // });
         },
         methods: {
             // 跳转城市选择页面
@@ -140,6 +148,35 @@
             confirmArea(result) {
                 this.cityListSelected = result.province.label + "-" + result.city.label + "-" + result.area.label;
                 uni.setStorageSync("NOW_SELECTED_CITY", result);
+            },
+            getRegeo() {
+                const that = this;
+                uni.showLoading({
+                    title: "获取信息中",
+                });
+                this.amapPlugin.getRegeo({
+                    success(data) {
+                        that.loc = data[0].name;
+                        uni.hideLoading();
+                    },
+                    fail(err) {
+                        //不加此字段控制台会报错
+                        console.log("fail");
+                    },
+                });
+                this.amapPlugin.getWeather({
+                    success(res) {
+                        console.log("liubbc weather: ", res);
+                        that.imgList[4].name = res.humidity.data;
+                        that.temperature = res.temperature.data;
+                        that.weather = res.weather.data;
+                        that.imgList[1].name = res.windpower.data;
+                        that.time = res.liveData.reporttime;
+                    },
+                    fail(err) {
+                        console.log("fail");
+                    },
+                });
             },
         },
     };
