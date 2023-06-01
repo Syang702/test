@@ -1,10 +1,7 @@
 /* 首页 */
 <template>
     <view class="page">
-        <!-- 这里是状态栏 -->
-        <!-- <view class="status_bar"> </view> -->
-        <!-- 带城市、搜索框的导航栏 -->
-        <navbar-city-search :cityListSelected="nowSelectedCity"></navbar-city-search>
+        <navbar-city></navbar-city>
         <view class="flex justifyEnd">
             <u-button type="primary" size="medium" class="mr-20" @click="scanCode">扫码添加</u-button>
             <u-button type="primary" size="medium" class="mr-20" @click="batchControl">添加批量控制</u-button>
@@ -42,10 +39,9 @@
 </template>
 
 <script>
-    import NavbarCitySearch from "@/components/navbar/navbar-city-search.vue";
-    import amap from "@/utils/amap-wx.js"; //自己js的所在的位置
+    import NavbarCity from "../components/navbar-city.vue";
     export default {
-        components: { NavbarCitySearch },
+        components: { NavbarCity },
         data() {
             return {
                 amapPlugin: "",
@@ -97,27 +93,6 @@
             //         url: "/pages/login/login",
             //     });
             // }
-            // this.getIndexInfos();
-            const amapPlugin = new amap.AMapWX({
-                key: "7cf1b0e5033710b3226a2d32dec22d6b",
-            });
-            var that = this;
-            // var myAmapFun = new amap.AMapWX({ key: "你申请的高德key" });
-            amapPlugin.getWeather({
-                type: "forecast", //表示获取的是预报信息 默认live（实时天气）
-                success: function (data) {
-                    console.log(data);
-                    //成功回调
-                    var weatherarr = new Array(3);
-                    for (var i = 0; i < 3; i++) {
-                        weatherarr[i] = data.forecast.casts[i + 1]; //获取后三天预报信息 今日的不保存
-                    }
-                },
-                fail: function (info) {
-                    //失败回调
-                    console.log(info);
-                },
-            });
         },
         methods: {
             toItem() {
