@@ -40,6 +40,7 @@
 
 <script>
     import NavbarCity from "../components/navbar-city.vue";
+    import { operaDevice } from "../../request/api.js";
     export default {
         components: { NavbarCity },
         data() {
@@ -86,6 +87,7 @@
             };
         },
         onLoad() {
+            this.test();
             // let Authorization = uni.getStorageSync("Authorization");
             // console.log("Authorization   " + Authorization);
             // if ((Authorization = "")) {
@@ -95,6 +97,16 @@
             // }
         },
         methods: {
+            test() {
+                let params = {
+                    plcCode: 380,
+                    open: 1,
+                    deviceCode: 8,
+                };
+                operaDevice(params).then((res) => {
+                    console.log(res);
+                });
+            },
             toItem() {
                 uni.navigateTo({
                     url: "/pages/home/houseInfo",

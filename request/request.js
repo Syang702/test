@@ -2,7 +2,7 @@
  * 自定义封装http请求
  */
 
-const baseUrl = process.env.NODE_ENV === "development" ? "http://39.98.38.108:8080/" : "http://10086b2b.com/b2bcloud/";
+const baseUrl = process.env.NODE_ENV === "development" ? "http://39.98.38.108:8080/" : "http://39.98.38.108:8080/";
 
 const request = ({ url, method, data, isToken = true }) => {
     const requestOptions = {
@@ -11,15 +11,12 @@ const request = ({ url, method, data, isToken = true }) => {
         method: method,
         header: {
             // "Content-Type": "application/x-www-form-urlencoded",
-            // "X-Requested-With": "XMLHttpRequest",
-            // Accept: "application/json",
-            //     Authorization: uni.getStorageSync("Authorization"),
+            "Content-Type": "application/json; charset=UTF-8",
             "X-Requested-With": "XMLHttpRequest",
             Accept: "application/json",
-            "Content-Type": "application/json; charset=UTF-8",
-            Token: "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhhZjhjZmIwLTY5N2MtNDQ2ZS1iODBkLWQ0MjU2NTAzMTI3OCJ9.CK9nQtuxha3GHlFvjC49sJ7higVNcMSzbkuT0C2mOAOPPge2Rnm3WmsYWCL08jh4lRjFJbpY5GtmAY59yHDMCg",
-            Authorization:
-                "Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhhZjhjZmIwLTY5N2MtNDQ2ZS1iODBkLWQ0MjU2NTAzMTI3OCJ9.CK9nQtuxha3GHlFvjC49sJ7higVNcMSzbkuT0C2mOAOPPge2Rnm3WmsYWCL08jh4lRjFJbpY5GtmAY59yHDMCg",
+            // Token: "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjhhZjhjZmIwLTY5N2MtNDQ2ZS1iODBkLWQ0MjU2NTAzMTI3OCJ9.CK9nQtuxha3GHlFvjC49sJ7higVNcMSzbkuT0C2mOAOPPge2Rnm3WmsYWCL08jh4lRjFJbpY5GtmAY59yHDMCg",
+            // Authorization: uni.getStorageSync("Authorization"),
+            Authorization: "abcdefghijklmnopqrstuvwxyz",
         },
         dataType: "json",
     };
@@ -47,7 +44,7 @@ const request = ({ url, method, data, isToken = true }) => {
                         uni.showToast({
                             title: res.data.msg || "认证失败，无法访问系统资源!",
                             icon: "none",
-                            duration: 2000,
+                            duration: 5000,
                         });
                         // uni.redirectTo({
                         //     url: "/pages/login/login",
@@ -57,21 +54,21 @@ const request = ({ url, method, data, isToken = true }) => {
                         uni.showToast({
                             title: res.data.msg || "当前操作没有权限!",
                             icon: "none",
-                            duration: 2000,
+                            duration: 5000,
                         });
                         break;
                     case 404:
                         uni.showToast({
                             title: res.data.msg || "访问资源不存在!",
                             icon: "none",
-                            duration: 2000,
+                            duration: 5000,
                         });
                         break;
                     case 500:
                         uni.showToast({
                             title: res.data.msg || "系统未知错误，请反馈给管理员!",
                             icon: "none",
-                            duration: 2000,
+                            duration: 5000,
                         });
                         break;
                     default:

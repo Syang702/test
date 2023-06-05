@@ -95,7 +95,10 @@
                 // }
                 uni.openSetting({
                     success: (res) => {
-                        this.getRegeo();
+                        if (res.authSetting["scope.userLocation"]) {
+                            console.log("位置重新获取res", res);
+                            this.getRegeo();
+                        }
                     },
                     fail: (error) => {
                         uni.showToast({
@@ -113,6 +116,11 @@
                 this.locationStatus = 1;
                 this.amapPlugin.getRegeo({
                     success: (res) => {
+                        uni.showToast({
+                            title: "位置获取成功",
+                            duration: 5000,
+                            icon: "none",
+                        });
                         this.locationStatus = 2;
                         let addressComponent = res[0].regeocodeData.addressComponent;
                         this.locationCity = addressComponent.province + "-" + addressComponent.city + "-" + addressComponent.district;
@@ -122,7 +130,7 @@
                     fail: (err) => {
                         this.locationStatus = 3;
                         uni.showToast({
-                            title: "位置权限获取失败",
+                            title: "位置获取失败",
                             duration: 3000,
                             icon: "none",
                         });
