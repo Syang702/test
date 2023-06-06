@@ -38,7 +38,6 @@ const request = ({ url, method, data, isToken = true }) => {
             ...requestOptions,
             success: (res) => {
                 // uni.hideLoading();
-                console.log("then", res);
                 switch (res.data.code) {
                     case 401:
                         uni.showToast({

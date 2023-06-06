@@ -15,7 +15,7 @@ let mpShare = require("uview-ui/libs/mixin/mpShare.js");
 Vue.mixin(mpShare);
 
 // 全局组件
-import Navbar from "@/components/navbar/navbar.vue";
+import Navbar from "@/components/navbar.vue";
 Vue.component("Navbar", Navbar);
 import NoData from "@/components/no-data.vue";
 Vue.component("NoData", NoData);

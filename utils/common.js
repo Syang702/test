@@ -198,4 +198,34 @@ const noMultipleClicks = (methods, info) => {
         // 这里是重复点击的判断
     }
 };
-export { daysRemaining, dropSign, cutStr, copyByUniapp, noMultipleClicks };
+
+
+const customNavBar = () => {
+    // 获取系统信息
+    const systemInfo = uni.getSystemInfoSync();
+    let customNavBar = {};
+    let menuButtonInfo = {};
+    /* {   获取菜单按钮（右上角胶囊按钮）的布局位置信息。坐标信息以屏幕左上角为原点。
+    bottom: 95;
+    height: 32;
+    left: 334;
+    right: 421;
+    top: 63;
+    width: 87;
+    } */
+    // #ifdef MP-WEIXIN || MP-BAIDU || MP-TOUTIAO || MP-QQ
+    menuButtonInfo = uni.getMenuButtonBoundingClientRect();
+    // #endif
+
+    // 导航栏高度 = 状态栏到胶囊的间距（胶囊距上距离-状态栏高度） * 2 + 胶囊高度 + 状态栏高度
+    customNavBar.menuTop = menuButtonInfo.top - systemInfo.statusBarHeight;
+    customNavBar.menuBotton = menuButtonInfo.top - systemInfo.statusBarHeight + 4;
+    customNavBar.menuWidth = menuButtonInfo.width;
+    customNavBar.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + 4 + menuButtonInfo.height + systemInfo.statusBarHeight;
+    customNavBar.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
+    customNavBar.menuHeight = menuButtonInfo.height;
+    customNavBar.statusBarHeight = systemInfo.statusBarHeight;
+    customNavBar.safeAreaHeight = systemInfo.safeAreaInsets.bottom;
+    return customNavBar;
+};
+export { daysRemaining, dropSign, cutStr, copyByUniapp, noMultipleClicks, customNavBar };

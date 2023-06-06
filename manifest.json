@@ -106,7 +106,7 @@
         "usingComponents": true,
         "permission": {
             "scope.userLocation": {
-                "desc": "获取当前城市，用于个性化推荐"
+                "desc": "你的位置信息将用于小程序位置接口的效果展示"
             }
         },
         "requiredPrivateInfos": [

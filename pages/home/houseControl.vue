@@ -53,10 +53,8 @@
 </template>
 
 <script>
-    import NavbarCitySearch from "@/components/navbar/navbar-city-search.vue";
 
     export default {
-        components: { NavbarCitySearch },
         data() {
             return {
                 classifyList: [
@@ -103,7 +101,6 @@
 
 <style lang="scss" scoped>
     .page {
-        padding: 20rpx;
         .header {
             height: 80rpx;
             background-color: #ffffff;

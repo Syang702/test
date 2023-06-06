@@ -6,7 +6,8 @@
         {
             "path": "pages/home/home",
             "style": {
-                "navigationBarTitleText": "我的大棚"
+                "navigationBarTitleText": "我的大棚",
+                "enablePullDownRefresh": true //配置下拉刷新
             }
         },
         {
@@ -124,21 +125,21 @@
     },
     "tabBar": {
         "color": "#aaafb8",
-        "selectedColor": "#33acfb",
+        "selectedColor": "#333",
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
         "list": [
             {
                 "pagePath": "pages/home/home",
                 "text": "首页",
-                "iconPath": "/static/tabbar/home_1.png",
-                "selectedIconPath": "/static/tabbar/home_2.png"
+                "iconPath": "/static/tabbar/home1.png",
+                "selectedIconPath": "/static/tabbar/home2.png"
             },
             {
                 "pagePath": "pages/user/user",
                 "text": "我的",
-                "iconPath": "/static/tabbar/my_1.png",
-                "selectedIconPath": "/static/tabbar/my_2.png"
+                "iconPath": "/static/tabbar/user1.png",
+                "selectedIconPath": "/static/tabbar/user2.png"
             }
         ]
     },

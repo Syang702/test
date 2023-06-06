@@ -2,11 +2,7 @@
 <template>
     <view class="page">
         <navbar-city></navbar-city>
-        <view class="flex justifyEnd">
-            <u-button type="primary" size="medium" class="mr-20" @click="scanCode">扫码添加</u-button>
-            <u-button type="primary" size="medium" class="mr-20" @click="batchControl">添加批量控制</u-button>
-        </view>
-        <view class="content">
+        <view class="content" v-if="classifyList.length > 0">
             <scroll-view scroll-y style="height: 100%; width: 100%">
                 <view class="list">
                     <view class="list-item" v-for="(item, index) in classifyList" :key="index" @click="toItem(item)">
@@ -35,11 +31,12 @@
                 </view>
             </scroll-view>
         </view>
+        <NoData :height="'50vh'" v-else />
     </view>
 </template>
 
 <script>
-    import NavbarCity from "../components/navbar-city.vue";
+    import NavbarCity from "../../components/navbar-city.vue";
     import { operaDevice } from "../../request/api.js";
     export default {
         components: { NavbarCity },
@@ -87,7 +84,7 @@
             };
         },
         onLoad() {
-            this.test();
+            // this.test();
             // let Authorization = uni.getStorageSync("Authorization");
             // console.log("Authorization   " + Authorization);
             // if ((Authorization = "")) {
@@ -95,6 +92,12 @@
             //         url: "/pages/login/login",
             //     });
             // }
+        },
+        onPullDownRefresh() {
+            console.log("refresh");
+            setTimeout(function () {
+                uni.stopPullDownRefresh();
+            }, 1000);
         },
         methods: {
             test() {
