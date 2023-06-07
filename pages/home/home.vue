@@ -32,6 +32,8 @@
             </scroll-view>
         </view>
         <NoData :height="'50vh'" v-else />
+        <u-icon class="add-btn" name="plus-circle-fill" color="#2979ff" size="100" @click="showActionSheet = true"></u-icon>
+        <u-action-sheet :list="actionList" v-model="showActionSheet" @click="action"></u-action-sheet>
     </view>
 </template>
 
@@ -43,6 +45,7 @@
         data() {
             return {
                 amapPlugin: "",
+                showActionSheet: false,
                 classifyList: [
                     {
                         wd: "32.6",
@@ -81,6 +84,18 @@
                         status: "success",
                     },
                 ],
+                actionList: [
+                    {
+                        text: "扫码",
+                        // color: "blue",
+                        // fontSize: 28,
+                        // subText: "感谢您的点赞",
+                    },
+                    {
+                        text: "添加批量控制",
+                    },
+                ],
+                show: false,
             };
         },
         onLoad() {
@@ -124,7 +139,9 @@
                     },
                 });
             },
-            batchControl() {},
+            action(index) {
+                // this.actionList[index]
+            },
         },
     };
 </script>
@@ -164,5 +181,20 @@
                 }
             }
         }
+    }
+    .add-btn {
+        position: fixed;
+        right: 50rpx;
+        bottom: 160rpx;
+        z-index: 99;
+    }
+    .add-btn::before {
+        content: "";
+        position: absolute;
+        width: 80rpx;
+        height: 80rpx;
+        left: 10rpx;
+        background-color: #ffffff;
+        border-radius: 50%;
     }
 </style>
