@@ -93,7 +93,7 @@
     },
     "quickapp": {},
     "mp-weixin": {
-        "appid": "wxd15f2a2c71b4281e",
+        "appid": "wx715386a964364008",
         "setting": {
             "urlCheck": false,
             "es6": false,
@@ -109,9 +109,7 @@
                 "desc": "你的位置信息将用于小程序位置接口的效果展示"
             }
         },
-        "requiredPrivateInfos": [
-            "getLocation"
-        ]
+        "requiredPrivateInfos": ["getLocation"]
     },
     "mp-alipay": {
         "usingComponents": true,
