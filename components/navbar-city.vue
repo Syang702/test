@@ -88,7 +88,7 @@
                         this.locationStatus = 2;
                         let addressComponent = res[0].regeocodeData.addressComponent;
                         this.locationCity = addressComponent.province + "-" + addressComponent.city + "-" + addressComponent.district;
-                        console.log("位置获取成功回调", res);
+                        // console.log("位置获取成功回调", res);
                     },
                     fail: (error) => {
                         this.locationStatus = 3;
@@ -101,7 +101,7 @@
                 });
                 this.amapPlugin.getWeather({
                     success(res) {
-                        console.log("天气: ", res);
+                        // console.log("天气: ", res);
                     },
                     fail(error) {},
                 });

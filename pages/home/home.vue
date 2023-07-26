@@ -5,6 +5,7 @@
         <view class="content" v-if="classifyList.length > 0">
             <scroll-view scroll-y style="height: 100%; width: 100%">
                 <view class="list">
+                    <u-button type="primary" shape="circle" v-for="(item, index) in 20" :key="index" @click="test(index)">测试</u-button>
                     <view class="list-item" v-for="(item, index) in classifyList" :key="index" @click="toItem(item)">
                         <view class="list-item-header flex">
                             <view class="list-item-name">{{ item.name }}</view>
@@ -39,7 +40,7 @@
 
 <script>
     import NavbarCity from "../../components/navbar-city.vue";
-    import { operaDevice } from "../../request/api.js";
+    import { operaDevice, findSensorNumData, findDeviceLogData } from "../../request/api.js";
     export default {
         components: { NavbarCity },
         data() {
@@ -99,7 +100,6 @@
             };
         },
         onLoad() {
-            // this.test();
             // let Authorization = uni.getStorageSync("Authorization");
             // console.log("Authorization   " + Authorization);
             // if ((Authorization = "")) {
@@ -115,14 +115,128 @@
             }, 1000);
         },
         methods: {
-            test() {
-                let params = {
-                    plcCode: 380,
-                    open: 1,
-                    deviceCode: 8,
-                };
-                operaDevice(params).then((res) => {
-                    console.log(res);
+            test(index) {
+                // let params = {
+                //     // plcCode: 380,
+                //     // open: 1,
+                //     // deviceCode: 8,
+                //     // sensorNum: 1,
+                //     plcId: 380,
+                // };
+                // findDeviceLogData(params).then((res) => {
+                //     console.log(res);
+                // });
+
+                let pages = [
+                    {
+                        path: "pages/home/home",
+                        style: {
+                            navigationBarTitleText: "我的大棚",
+                            enablePullDownRefresh: true, //配置下拉刷新
+                        },
+                    },
+                    {
+                        path: "pages/home/houseControl",
+                        style: {
+                            navigationBarTitleText: "大棚信息",
+                        },
+                    },
+                    {
+                        path: "pages/home/xwyczdpz",
+                        style: {
+                            navigationBarTitleText: "限位延迟自动配置",
+                        },
+                    },
+                    {
+                        path: "pages/home/houseControl1",
+                        style: {
+                            navigationBarTitleText: "大棚控制",
+                        },
+                    },
+                    {
+                        path: "pages/home/sensorAlarm",
+                        style: {
+                            navigationBarTitleText: "传感器报警",
+                        },
+                    },
+                    {
+                        path: "pages/home/zdjlsz",
+                        style: {
+                            navigationBarTitleText: "自动卷帘设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/plantManage",
+                        style: {
+                            navigationBarTitleText: "种植管理",
+                        },
+                    },
+                    {
+                        path: "pages/home/fljcsz",
+                        style: {
+                            navigationBarTitleText: "风帘基础设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/houseBaseInfo",
+                        style: {
+                            navigationBarTitleText: "大棚基础信息",
+                        },
+                    },
+                    {
+                        path: "pages/home/jlscssz",
+                        style: {
+                            navigationBarTitleText: "卷帘时长锁设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/jlfzsz",
+                        style: {
+                            navigationBarTitleText: "卷帘反转设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/jlansz",
+                        style: {
+                            navigationBarTitleText: "卷帘按钮设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/flansz",
+                        style: {
+                            navigationBarTitleText: "风帘按钮设置",
+                        },
+                    },
+                    {
+                        path: "pages/home/zdflsz",
+                        style: {
+                            navigationBarTitleText: "自动风帘设置",
+                        },
+                    },
+                    {
+                        path: "pages/login/login",
+                        style: {
+                            navigationBarTitleText: "登录",
+                        },
+                    },
+                    {
+                        path: "pages/user/user",
+                        style: {
+                            navigationBarTitleText: "我的",
+                            navigationBarBackgroundColor: "#f1e7e7",
+                        },
+                    },
+                    {
+                        path: "pages/user/info",
+                        style: {
+                            navigationBarTitleText: "用户信息",
+                        },
+                    },
+                ];
+                uni.navigateTo({
+                    url: "/" + pages[index].path,
+                    animationType: "pop-in",
+                    animationDuration: 200,
                 });
             },
             toItem() {

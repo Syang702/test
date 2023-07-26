@@ -2,7 +2,7 @@
  * 自定义封装http请求
  */
 
-const baseUrl = process.env.NODE_ENV === "development" ? "http://39.98.38.108:8080/" : "http://39.98.38.108:8080/";
+const baseUrl = process.env.NODE_ENV === "development" ? "http://192.168.31.64:8080/" : "http://39.98.38.108:8080/";
 
 const request = ({ url, method, data, isToken = true }) => {
     const requestOptions = {
